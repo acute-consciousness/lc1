@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "localcyclic",
-    "slug": "localcyclic",
+    "slug": "localcyclic-v2",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -16,10 +16,16 @@
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.localcyclic.localcyclicv2"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "520c5cd1-445a-4576-9f11-e80b31be854e"
+      }
     }
   }
 }
