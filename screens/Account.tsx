@@ -1,4 +1,5 @@
-import { StyleSheet,View, Text, TextInput} from 'react-native';
+import { View, Text, TextInput, TextInputComponent, StyleSheet} from 'react-native';
+import  {CustomTextInput}  from '../looks/customComponents';
 /**a component, which is, which is a function
  * structure is/ was
  * const i i don't know
@@ -15,8 +16,24 @@ nah, we will start with props
 */
 export default function Account(){
     return(
-        <View>
-            <Text>eric</Text>
+        <View style={styles.one}> 
+        <View style={styles.two}>
+            <CustomTextInput
+            label={<Text>What's your number</Text>}
+            placeHolder='phone number' 
+            onChangeText={(hold)=>{}}
+            value=''
+            touchableText='continue'
+            /> 
+            </View>          
         </View>
     )
 }
+const styles = StyleSheet.create({
+    one:{
+        justifyContent:'center',
+    },
+    two:{
+        margin:10,
+    }
+})

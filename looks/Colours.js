@@ -11,6 +11,10 @@ export const Colours = {//why did we have the  = {}, i don't think that, that th
    forBanners:{
        valleyOrange:'#E84615',
     },   
+    thatIlike:{ //they are just the creamish ones 
+        darkish: 'rgb(240,237,215)',
+        lighter: 'rgb(250,249,238)',
+    },
     reds:{
         one:'#ED000B'
     },
@@ -44,5 +48,6 @@ export const Colours = {//why did we have the  = {}, i don't think that, that th
         twoLittlebitRicher: "#F7C629"
     },
     greys:{
+        one:'rgb(169, 169, 169)',
     }
 }
