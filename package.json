@@ -5,6 +5,8 @@
   "dependencies": {
     "expo": "~57.0.12",
     "expo-dev-client": "~57.0.11",
+    "expo-font": "~57.0.1",
+    "expo-splash-screen": "~57.0.6",
     "expo-status-bar": "~57.0.1",
     "react": "19.2.3",
     "react-native": "0.86.2"

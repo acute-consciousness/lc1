@@ -1,4 +1,4 @@
-import {View,Text,TextInput,StyleSheet, KeyboardAvoidingView, Platform, TouchableOpacity} from 'react-native';
+import {View,Text,TextInput,StyleSheet, KeyboardAvoidingView, Platform, TouchableOpacity,TextInputSubmitEditingEvent} from 'react-native';
 import { Colours } from './Colours';
 import { ReactNode } from 'react';
 /**
@@ -7,7 +7,8 @@ import { ReactNode } from 'react';
     label:ReactNode;
         placeHolder:string;
         value:string;
-        onChangeText:(text:String)=>void;// type function
+        onChangeText:(text:string)=>void;//huku ni mazingaombwe, but guess it represents/ is a shortcut of retrun void, naah, ni mazingaombwe(arrow functions and the lot)
+        onSubmitEditing:(e:TextInputSubmitEditingEvent)=>void;// type function
         touchableText:string;
     }
    const CustomTextInput = (props:TextInputProps) =>{
@@ -25,8 +26,9 @@ import { ReactNode } from 'react';
             <View style={styles.viewTwo} >
                    <TextInput style={styles.input}
             placeholder={props.placeHolder}
-            onChangeText={props.onChangeText}
             value={props.value}
+            onChangeText={props.onChangeText}
+            onSubmitEditing={props.onSubmitEditing} 
             />
             </View>
 
@@ -55,18 +57,19 @@ import { ReactNode } from 'react';
         viewOne:{
             height:'30%',
             justifyContent: 'center',
-            alignItems:'center', 
             width: '100%',
+            // alignItems:'center', 
             
         },
 
         label:{
-            marginBottom:'auto',
-            fontFamily:'',
-            fontSize: 28,
-            fontWeight: '600',
+            marginTop:'auto',
+            marginBottom:5,
+            // fontFamily:'',
+            fontSize: 24,
+            fontWeight: '500',
             color: Colours.blacks.openLibrary,
-            textAlign: 'center',
+            // textAlign: 'center',
         },
 
         TwoThree:{
