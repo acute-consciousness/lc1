@@ -21,6 +21,22 @@ import { ReactNode } from 'react';
     }
 
    const CustomTouchableOpacity = (props:TextInputProps)=> {
+    //So i guess or should i interprate that this nit solves but work around that now values have been assigned o props
+    // as they are originally not, not, not, not, mmh, not suposed to
+    // and so
+     //here, here, here, that the value current in action will the one that willl be used, otherwise, it will justbe false
+    //i should get that upper comment into my head, what is the default state? True i have set it
+    //then what, oh! the opacity thing
+    //maybe for now get that state and props are detected auto, or when we connect the child to parent,  by importing, mh, by importing the whole component
+    // so up there, that it is like so
+    let isDisabled;// ok i have declared a, declared a something
+    if(props.disabled){//just like we saw,...i can't explain but for now, how, i get the cuuren value, so when set it gets that but continuing..
+        isDisabled=props.disabled;//this is true
+    }
+    else{
+        isDisabled=false;
+    }
+    //let us check this in test
         return (
             // nothing related to what is below, disable property. bpp - that it can be done even on, on, on, on a touchable
             // onPress and opacity. i think onPress is for clickable, ok, we, ok, we will play with them
@@ -30,7 +46,18 @@ import { ReactNode } from 'react';
             /* what did i, what did i want to say, jsut check if disable works, works and, and, and, and, and check out what it does
             but nilikuwa nataka kusema, the value true or false can just be passed in the accounts file
             changing the style, changing, mmh, changing, mmmh, changing the styles is what, is what, is what brought me here*/
-   <TouchableOpacity style={styles.btn} disabled={props.disabled}>//what about props.onchange. But we haven't defined this
+   <TouchableOpacity style={{
+    backgroundColor:isDisabled?Colours.blues.openLibrary:Colours.greys.one,
+    // backgroundColor: Colours.greys.one,
+     //backgroundColor:Colours.blues.openLibrary,
+           paddingVertical: 15,
+    paddingHorizontal: 50,  
+    borderRadius:4,
+    //if bllaah?yes: otherwise no... and i can't wrap around how, and i can't around how i will set it, 
+    //what about the many/extended 'ternary' operators?
+    //itakuwa (disablePropValue==false)? 0  : 1;
+   }}
+    disabled={props.disabled}>//what about props.onchange. But we haven't defined this
                     <Text style={styles.btnText}>{props.touchableText}</Text>
                 </TouchableOpacity>
 
@@ -71,6 +98,18 @@ import { ReactNode } from 'react';
         )
 
     }
+    /*the conventional way to pass props, to, to, to, to pass props in a function, i don't know
+    izi arrow function ziko hadi 'assigned to const, mmh, zinaitwa aje
+    so the way would be like 
+    const styles = (alafu we pass the props hapa) =>{}
+    but ii yenye naangalia itakuwa aje?
+    so kuna function hapa
+    the dot create is, is a method from somewhere, lazily i say that tukipitisha arguement hapa
+    italeta some error that it wasn't declared in such a structure, in, in, in, in
+    such a structure as, as to accept, as, as, as to accept arguements. Waah, mi hadi nahisi kulala
+    so what, so what are we going to do????
+    make it into a function?, well, iyo, well iyo imerusha maerros on the styles, ok, sawa
+    */
 
     const styles = StyleSheet.create({
         viewMain:{
@@ -127,12 +166,12 @@ import { ReactNode } from 'react';
     marginTop: 'auto', //what did this do again
     marginBottom:30,
         },
-        btn:{
+       /* btn:{
             backgroundColor:Colours.blues.openLibrary,
            paddingVertical: 15,
     paddingHorizontal: 50,  
     borderRadius:4,
-        },
+        },*/
         btnText:{
               fontSize: 14,
     fontWeight: '600',
