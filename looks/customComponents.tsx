@@ -1,5 +1,6 @@
-import {View,Text,TextInput,StyleSheet, KeyboardAvoidingView, Platform, TouchableOpacity,TextInputSubmitEditingEvent} from 'react-native';
+import {View,Text,TextInput,StyleSheet, KeyboardAvoidingView, Platform, TouchableOpacity,TextInputSubmitEditingEvent, Modal} from 'react-native';
 import { Colours } from './Colours';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { ReactNode } from 'react';
 /**
  * waaahh, what a hustle that was. what a hustle that was
@@ -18,7 +19,60 @@ import { ReactNode } from 'react';
         touchableText?:string;
         disabled?:boolean;//nikienka onChange, mmh, nikieka onChange hapa, it, it, it says it, it says it refers, it refers to a value
         // walai, walai, walai, walai javascript
+        onPress?:(e:any)=>void;//so, so after the, after, mmh, after, after
+        //after defining its interface now what?
     }
+    interface Alerters{
+        feedBackText?:ReactNode,
+    }
+
+   const ReturnError = (props:Alerters)=> {
+        return(
+            <Modal transparent animationType="fade">
+                <View style={{
+                width:'100%',//whatever recommended auto and yea, i kind of have an interpretation of how it can look
+                //we want something to do with the height, the this be done by the padding of the text and so on
+                backgroundColor:Colours.creeamish.wayCreamish,
+
+            }}><View style={{
+                 elevation: 8,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+            }}>
+                <Ionicons name="alert" size={24} color={Colours.reds.one} />
+                <Text>{props.feedBackText}
+                </Text>
+                </View>
+                </View>
+
+            </Modal>
+        )
+    }
+
+
+
+    const FeedBackAlerter = (props:Alerters)=> {
+        return(
+            <View style={{
+                width:'100%',//whatever recommended auto and yea, i kind of have an interpretation of how it can look
+                //we want something to do with the height, the this be done by the padding of the text and so on
+                backgroundColor:Colours.creeamish.wayCreamish,
+
+
+            }}><View style={{}}>
+                //icons should be in, icons should be conditional
+                <Ionicons name="checkmark-outline" size={32} color={Colours.greens.openLibrary} />
+                <Ionicons name="alert" size={24} color={Colours.reds.one} />
+                <Text>{props.feedBackText}
+                </Text>
+                </View>
+
+            </View>
+        )
+    }
+
+
 
    const CustomTouchableOpacity = (props:TextInputProps)=> {
     //So i guess or should i interprate that this nit solves but work around that now values have been assigned o props
@@ -32,9 +86,12 @@ import { ReactNode } from 'react';
     let isDisabled;// ok i have declared a, declared a something
     if(props.disabled){//just like we saw,...i can't explain but for now, how, i get the cuuren value, so when set it gets that but continuing..
         isDisabled=props.disabled;//this is true
-    }
+    }//have, have, mmh, changed, mmh, changed to the !not operator to see, to try and have the disabled colour from, from
+    //from the start, from, from, from the start of the render
+    //no we are, no, no we are revering it back
     else{
-        isDisabled=false;
+                isDisabled=false;
+
     }
     //let us check this in test
         return (
@@ -46,8 +103,9 @@ import { ReactNode } from 'react';
             /* what did i, what did i want to say, jsut check if disable works, works and, and, and, and, and check out what it does
             but nilikuwa nataka kusema, the value true or false can just be passed in the accounts file
             changing the style, changing, mmh, changing, mmmh, changing the styles is what, is what, is what brought me here*/
-   <TouchableOpacity style={{
-    backgroundColor:isDisabled?Colours.blues.openLibrary:Colours.greys.one,
+   <TouchableOpacity onPress={props.onPress} style={{
+    backgroundColor:(!isDisabled==false)?Colours.blues.disableBlue:Colours.blues.openLibrary,//well should it be like this, damn, damn, damn the mistake, the, the mistake, the, the, the mistake was actually here
+    //actually no i messed it up, meaning i didn't, i didn't catch this wel
     // backgroundColor: Colours.greys.one,
      //backgroundColor:Colours.blues.openLibrary,
            paddingVertical: 15,
@@ -64,7 +122,8 @@ import { ReactNode } from 'react';
         )
     }
 
-   const CustomTextInput = (props:TextInputProps) =>{
+   const CustomTextInput = (props:TextInputProps) =>{// that the issue, mmh, that the issue with the onPress is that this, is, is, is, is, mmh, is that this component, 
+    //is that this component dropped it
         return(
         <View style={styles.viewMain}>
 
@@ -85,10 +144,12 @@ import { ReactNode } from 'react';
             />
             </View>
 
+
             <View style={styles.viewThree}>
                <CustomTouchableOpacity 
                disabled={props.disabled} 
-               touchableText={props.touchableText}/>
+               touchableText={props.touchableText}
+               onPress={props.onPress}/>
             </View>
 
             </View>
@@ -179,4 +240,4 @@ import { ReactNode } from 'react';
         }
 
     })
-    export {CustomTextInput};
+    export {CustomTextInput, ReturnError,FeedBackAlerter};

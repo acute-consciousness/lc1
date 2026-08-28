@@ -22,6 +22,7 @@ export const Colours = {//why did we have the  = {}, i don't think that, that th
         one:'#FBF8EF',
         fromCH:'#FAF9EE',//is called vanilla
         openLibrary:"#DFDEC2",
+        wayCreamish:'rgb(251, 255, 200)',
         another:'#E9E5DE',
 
     },
@@ -41,6 +42,7 @@ export const Colours = {//why did we have the  = {}, i don't think that, that th
         valleyBlue:'#195C9F',
         openLibrary:'#194880',
         openLibraryText:"#495E75",
+        disableBlue:'rgb(140, 163, 191)',
         another:"#285D8F"
     },
     yellows:{
