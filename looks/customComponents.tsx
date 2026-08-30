@@ -1,7 +1,8 @@
-import {View,Text,TextInput,StyleSheet, KeyboardAvoidingView, Platform, TouchableOpacity,TextInputSubmitEditingEvent, Modal} from 'react-native';
+import {View,Text,TextInput,StyleSheet,KeyboardAvoidingView, Platform, TouchableOpacity,TextInputSubmitEditingEvent, Modal, KeyboardTypeOptions} from 'react-native';
 import { Colours } from './Colours';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ReactNode } from 'react';
+
 /**
  * waaahh, what a hustle that was. what a hustle that was
  * i'll reflect on it later. i'll, i'll, i'll reflect in it later, now
@@ -17,6 +18,7 @@ import { ReactNode } from 'react';
         onChangeText?:(e:any)=>void;//huku ni mazingaombwe, but guess it represents/ is a shortcut of retrun void, naah, ni mazingaombwe(arrow functions and the lot). void? hadi, void?, void?, void? hadi kama, hadi kama itarudisha vitu? Mazinga, mazingaobwe braaH
         onSubmitEditing?:(e:any)=>void;// type function
         touchableText?:string;
+        keyboardType?:KeyboardTypeOptions;
         disabled?:boolean;//nikienka onChange, mmh, nikieka onChange hapa, it, it, it says it, it says it refers, it refers to a value
         // walai, walai, walai, walai javascript
         onPress?:(e:any)=>void;//so, so after the, after, mmh, after, after
@@ -139,6 +141,7 @@ import { ReactNode } from 'react';
                    <TextInput style={styles.input}
             placeholder={props.placeHolder}
             value={props.value}
+            keyboardType={props.keyboardType}
             onChangeText={props.onChangeText}
             onSubmitEditing={props.onSubmitEditing} 
             />

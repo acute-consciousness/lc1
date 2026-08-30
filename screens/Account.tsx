@@ -55,36 +55,28 @@ export default function Account(){
 // this whole structure, mmh, hadi nimeanguka
 
     const onPressFnct = async() =>{//it is the whole function async, i'm telling myself that, that, that, that we will see if, if i change it later
-        const hold = {text};
-        console.log(hold);
+        console.log({text});//the {"text":"0700000000"} as for now, we need a string to be the body, not, mmh, not this format, not this format. Checked it out na wanasema, checked, mmh, checked it out na wanasema
+        //na bpp recommends we just pass the state, no deep layering, deep layering stuff
+        //so let chek the format it will be logged out with. I think it will just be the same
+        //yea, still the same
         Keyboard.dismiss();//should have the ()..right now i'm like whatever, i could say it is, it is because, it, it is a function.. but the autocomplete should hel with this
         //continuing
         try{
             //then, then, then hapa the response, i will actuall name it response, mmh, and see if, and, mmh, and see if using that name
             //using that, using that, using that name fits it
-            const apiResponse = await fetch('http://localhost:8080/api/onlytests/verifyuser',
-                //ooh, second, second, second arguement, second, second arguement, mmh, must be in braces, mmh, to
-                {
-                    method:'POST',
-                    headers:{
-                        Accept:'application/json',
-                        'Content-Type':'application/json',//is this mmh?, is this that we are sending?, yes, the format our body is
-                    },
-                    body:JSON.stringify({
-                        key:{hold}//that, that, mmh, that, that, mmh that just hold is ok, rather than
-                        //{hold}. That it is more cleaner.   .have, mmh, have mmh, have my value here
-                    })
-                }
-
+            const apiResponse = await fetch('http://192.168.2.16:8080/api/onlytests/verifyuser'
+                
             );// so not await into parenthesis?, venye tu async, async ili, ilistickiwa hapo
+            console.log(apiResponse.status);
             // ati then, ati then
-            const userObjectInJson = await apiResponse.json;//await, await, mmh, await tena,should i return the json, let return the object basi, for the test
+            const userObjectInJson = await apiResponse.json();//that also hapa nilikueka () kwa the json,await, await, mmh, await tena,should i return the json, let return the object basi, for the test
             //i'll just, i'll just take the await meaning as i see it, wait, await
             console.log(userObjectInJson);
             return userObjectInJson;
         }
         catch(error){
-            <ReturnError feedBackText="Server connection error!"/>
+            // <ReturnError feedBackText="Server connection error!"/>, that i can't return a jsx hapa
+            console.log("failed!"+error)
         }
         finally{ console.log("this is finally speaking!");} 
         
@@ -128,6 +120,7 @@ export default function Account(){
             //before checking on the error we are being flagged, at last after the 'done' is hit, that is when, that is when what, the user input will be set to state?
             onSubmitEditing={onSubmit}
               touchableText='continue'
+              keyboardType="phone-pad"
               disabled={disable}
               onPress={onPressFnct}
             /> 
