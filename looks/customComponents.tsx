@@ -106,7 +106,7 @@ import { ReactNode } from 'react';
             but nilikuwa nataka kusema, the value true or false can just be passed in the accounts file
             changing the style, changing, mmh, changing, mmmh, changing the styles is what, is what, is what brought me here*/
    <TouchableOpacity onPress={props.onPress} style={{
-    backgroundColor:(!isDisabled==false)?Colours.blues.disableBlue:Colours.blues.openLibrary,//well should it be like this, damn, damn, damn the mistake, the, the mistake, the, the, the mistake was actually here
+    backgroundColor:(!isDisabled==false)?Colours.greens.ileyaJamieGreen:Colours.greens.jamieGreenDeep,//well should it be like this, damn, damn, damn the mistake, the, the mistake, the, the, the mistake was actually here
     //actually no i messed it up, meaning i didn't, i didn't catch this wel
     // backgroundColor: Colours.greys.one,
      //backgroundColor:Colours.blues.openLibrary,
@@ -178,7 +178,8 @@ import { ReactNode } from 'react';
     const styles = StyleSheet.create({
         viewMain:{
         height:'100%',
-        flexDirection:'column'
+        flexDirection:'column',
+        backgroundColor:'Colours.creeamish.wayCreamish'
         },
 
         viewOne:{

@@ -5,8 +5,8 @@ import {Colours} from './Colours';
 import { StyleSheet, Platform, StatusBar } from "react-native"; 
 export default StyleSheet.create({
   AndroidSafeArea: {
-    // flex: 1,
-    // backgroundColor: Colours.creeamish.one,
+    flex: 1,
+    backgroundColor: Colours.creeamish.openLibrary,
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   }
 });

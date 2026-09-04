@@ -19,7 +19,7 @@ export const Colours = {//why did we have the  = {}, i don't think that, that th
         one:'#ED000B'
     },
     creeamish : {
-        one:'#FBF8EF',
+        one:'rgb(233, 218, 197)',
         fromCH:'#FAF9EE',//is called vanilla
         openLibrary:"#DFDEC2",
         wayCreamish:'rgb(251, 255, 200)',
@@ -34,7 +34,10 @@ export const Colours = {//why did we have the  = {}, i don't think that, that th
     },
     greens : {
         openLibrary:"#007B60",
-        green:"2BBAA5"
+        ileyaJamieGreen:'#627665',
+        jamieGreenDeep:'rgb(59, 84, 63)',
+        jamieGreenLigher:'rgb(118, 136, 104)'
+
     },
     blues : {
         blueGreenish: '#7A9CAC',

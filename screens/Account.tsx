@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, TextInputSubmitEditingEvent, Keyboard } from 'react-native';
 import  {CustomTextInput, ReturnError}  from '../looks/customComponents';
 import { useState } from 'react';
+import { Colours } from '../looks/Colours';
 /**TODO, next time
  * check the function defination, check, mmh, the fucntion defination on, on, on the split, on the, on the
  * splitt example, sawa. Alafu pia set-up, alafu pia set-up the, the, the, the, the, the opacity thing
@@ -36,7 +37,7 @@ export default function Account(){
         //but it should also be on the onchangetextinput, hii onChangeTextInput waah
         setText(charInpt);
         //its, it is in, it is in onChangeText so it is live, It is live so no need for while
-        if(charInpt.length ==10){
+        if(charInpt.length ==9){
             setEnable(false);
 
     }
@@ -64,11 +65,27 @@ export default function Account(){
         try{
             //then, then, then hapa the response, i will actuall name it response, mmh, and see if, and, mmh, and see if using that name
             //using that, using that, using that name fits it
-            const apiResponse = await fetch('http://192.168.2.16:8080/api/onlytests/verifyuser'
-                
-            );// so not await into parenthesis?, venye tu async, async ili, ilistickiwa hapo
+            const apiResponse = await fetch(`http://192.168.2.13:8080/api/onlytests/verifyuser?key=${text}`);//another error, i hope it is the last, but i should use te/verifyuser?key=${text} sawa `` si the typically used '' ``
+            // sasa ni JSON Parse erro: UNexpected end of input, but got an 200 respone
+            // the word key imetoka wapi, defo know it's not from my backend but i don't have the
+            // urge to look it up. Just have it intyur head Eric that, that, it is supposed to be, tha
+            // that it is supposed to be there,so not await into parenthesis?, venye tu async, async ili, ilistickiwa hapo
+            /**this is another day
+             * nakumbuka the last time w, we worked on the fect,.. the connection thing...what?
+             * ..that post had to go with post but i didn't understand this, but found out for a string, 'key
+             * even though i don;t know i'm calling it a key but i can POST to GET, don't mmh, don't know about the cap
+             * but i can POST to a string, i.e, i.e, for a 'check-uP' but i can't post an objet to a get
+             * tries o use post and i had difficulties so i resulted to get as it can do that, but, but this is ntot recommended because ita show
+             * up like that url we saw for whatapp, kwa imixwhatilike. anyway we are using it
+             * without checking the controller function, it exceots a string, i set it up that way
+             * so what i added fro bpp suggestion was, what, a ATsignRequestPara then the type parameter
+             * and then here in the client
+             * have the endpoint then ? question maek doler sign  in {} the, the state, mmh, the state in this case
+             * the, the, the, the, the state in this case **key=
+             * na hata sijui the error responses za web servers
+             */
             console.log(apiResponse.status);
-            // ati then, ati then
+            // ati then, ati thens
             const userObjectInJson = await apiResponse.json();//that also hapa nilikueka () kwa the json,await, await, mmh, await tena,should i return the json, let return the object basi, for the test
             //i'll just, i'll just take the await meaning as i see it, wait, await
             console.log(userObjectInJson);
@@ -133,6 +150,7 @@ export default function Account(){
 const styles = StyleSheet.create({
     one:{
         justifyContent:'center',
+        backgroundColor:Colours.creeamish.openLibrary,
     },
     two:{
         margin:10,
