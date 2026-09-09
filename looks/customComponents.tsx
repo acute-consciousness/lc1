@@ -135,7 +135,7 @@ import { ReactNode } from 'react';
 
             <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
 
-            <View style={styles.TwoThree}>
+            <View style={styles.ViewTwoThree}>
 
             <View style={styles.viewTwo} >
                    <TextInput style={styles.input}
@@ -200,7 +200,7 @@ import { ReactNode } from 'react';
             // textAlign: 'center',
         },
 
-        TwoThree:{
+        ViewTwoThree:{
             height:'70%',
             flexDirection: 'column',
             width: '100%',  
@@ -210,7 +210,7 @@ import { ReactNode } from 'react';
               width: '100%',
         },
 
-        input:{
+  input:{
            fontSize: 13,
            fontWeight: '400',
            backgroundColor:Colours.thatIlike.lighter,

@@ -3,8 +3,11 @@
  * 
  */
 import Account from './Account';
+import Profile from './Profile';
+import OTP from './OTP';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { createStaticNavigation } from '@react-navigation/native';
+import CreateAccount from './OTP';
 //then, then, then, then what?. let us try and interprate
 const configNavigation =createNativeStackNavigator({//tha natives on ios and android (Fragent). Behavior (transitions), performance
     initialRouteName:'Account',// that, that, that, mmh, that ikiwa ivi, Account is a string, jjez ati inafaa kuwa inside '', na sii iyo ndio, na, na siiyo ndio string. Javascript* walai. But i, but i appreciate this framework juu kutumia Android Studio  ssh!
@@ -15,7 +18,19 @@ const configNavigation =createNativeStackNavigator({//tha natives on ios and and
               options: {
                 headerShown: false,
             },
-        }
+        },
+         Profile:{
+            screen:Profile,//noe, mmh, now mmh, now, the single screen
+              options: {
+                headerShown: false,
+            },
+        },
+              OTP:{
+            screen:OTP,//noe, mmh, now mmh, now, the single screen
+              options: {
+                headerShown: false,
+            },
+        },
     },
 })
 //then you like wrap it up.. so as to...in the root, in, mmh, in the root file, yea, as as to render in the
