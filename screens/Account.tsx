@@ -91,7 +91,7 @@ export default function Account(){
              * the, the, the, the, the state in this case **key=
              * na hata sijui the error responses za web servers
             */
-            const apiResponse = await fetch(`http://192.168.2.13:8080/users/verifyuser?key=${text}`);//another error, i hope it is the last, but i should use te/verifyuser?key=${text} sawa `` si the typically used '' ``
+            const apiResponse = await fetch(`http://192.168.2.11:8080/users/verifyuser?key=${text}`);//another error, i hope it is the last, but i should use te/verifyuser?key=${text} sawa `` si the typically used '' ``
             const responseStatus = apiResponse.status;//so, i, i ,i mmh, i tested it out and  it has i.e 200 so a text or and integer anyway iyo hawexi, mmh,anyway iyo hai, haiwezi nilemeano (), at first thought maybe it has value right, i presume ..but let use check it out            // sasa ni JSON Parse erro: UNexpected end of input, but got an 200 respone
             console.log(apiResponse.status);
             // ati then, ati thens
@@ -173,7 +173,7 @@ export default function Account(){
 const styles = StyleSheet.create({
     one:{
         justifyContent:'center',
-        backgroundColor:Colours.creeamish.one,
+        backgroundColor:Colours.creeamish.fromCH,
     },
     two:{
         margin:10,

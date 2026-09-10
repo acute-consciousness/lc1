@@ -23,7 +23,7 @@ export default function OTP({ route }: any) {// it was just this?({ route }: any
 const styles = StyleSheet.create({
     one: {
         justifyContent: 'center',
-        backgroundColor: Colours.creeamish.one,
+        backgroundColor: Colours.creeamish.fromCH,
         height:'100%',
     },
     two: {

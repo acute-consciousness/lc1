@@ -34,7 +34,7 @@ import { ReactNode } from 'react';
                 <View style={{
                 width:'100%',//whatever recommended auto and yea, i kind of have an interpretation of how it can look
                 //we want something to do with the height, the this be done by the padding of the text and so on
-                backgroundColor:Colours.creeamish.wayCreamish,
+                backgroundColor:Colours.creeamish.fromCH,
 
             }}><View style={{
                  elevation: 8,
@@ -59,7 +59,7 @@ import { ReactNode } from 'react';
             <View style={{
                 width:'100%',//whatever recommended auto and yea, i kind of have an interpretation of how it can look
                 //we want something to do with the height, the this be done by the padding of the text and so on
-                backgroundColor:Colours.creeamish.wayCreamish,
+                backgroundColor:Colours.creeamish.fromCH,
 
 
             }}><View style={{}}>
@@ -179,7 +179,7 @@ import { ReactNode } from 'react';
         viewMain:{
         height:'100%',
         flexDirection:'column',
-        backgroundColor:'Colours.creeamish.wayCreamish'
+        backgroundColor:Colours.creeamish.fromCH,
         },
 
         viewOne:{
@@ -213,7 +213,7 @@ import { ReactNode } from 'react';
   input:{
            fontSize: 13,
            fontWeight: '400',
-           backgroundColor:Colours.thatIlike.lighter,
+           backgroundColor:Colours.thatIlike.darkish,
            color: Colours.blacks.clubHPlaceholders,
            borderRadius:4,
            borderWidth: 0.4,

@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     viewMain:{
        height:'100%',
         flexDirection:'column',
-        backgroundColor:Colours.creeamish.one,//no '', for the imports kwa the style, defo will not,mmh, defo will not remember this
+        backgroundColor:Colours.creeamish.fromCH,//no '', for the imports kwa the style, defo will not,mmh, defo will not remember this
     },
 
         viewOne:{
