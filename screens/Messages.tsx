@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet} from 'react-native';
 import { Colours } from '../looks/Colours';
-const Listings = ()=>{//bado exporting, mmmh, inanikalia
+const Messages = ()=>{//bado exporting, mmmh, inanikalia
     return(
         <View style={styles.viewMain}>
-            <Text>listings!</Text>
+            <Text>Messages</Text>
             </View>
     )
 }
@@ -15,4 +15,4 @@ viewMain:{
     backgroundColor:Colours.creeamish.fromCH,
 },
 })
-export default Listings;
+export default Messages;
