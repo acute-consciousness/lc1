@@ -83,7 +83,8 @@ export default function Account(){
              * even though i don;t know i'm calling it a key but i can POST to GET, don't mmh, don't know about the cap
              * but i can POST to a string, i.e, i.e, for a 'check-uP' but i can't post an objet to a get
              * tries o use post and i had difficulties so i resulted to get as it can do that, but, but this is ntot recommended because ita show
-             * up like that url we saw for whatapp, kwa imixwhatilike. anyway we are using it
+             * up like that url we saw for whatapp, kwa imixwhatilike. anywa ywe are using it
+             * 
              * without checking the controller function, it exceots a string, i set it up that way
              * so what i added fro bpp suggestion was, what, a ATsignRequestPara then the type parameter
              * and then here in the client
@@ -92,6 +93,7 @@ export default function Account(){
              * na hata sijui the error responses za web servers
             */
             const apiResponse = await fetch(`http://192.168.2.11:8080/users/verifyuser?key=${text}`);//another error, i hope it is the last, but i should use te/verifyuser?key=${text} sawa `` si the typically used '' ``
+            //192.168.2.11
             const responseStatus = apiResponse.status;//so, i, i ,i mmh, i tested it out and  it has i.e 200 so a text or and integer anyway iyo hawexi, mmh,anyway iyo hai, haiwezi nilemeano (), at first thought maybe it has value right, i presume ..but let use check it out            // sasa ni JSON Parse erro: UNexpected end of input, but got an 200 respone
             console.log(apiResponse.status);
             // ati then, ati thens

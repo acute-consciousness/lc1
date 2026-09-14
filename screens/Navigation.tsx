@@ -46,16 +46,16 @@ const bottomNavTab = createBottomTabNavigator({//now the  route
     
 
         tabBarIcon:({color})=>{//so this is how you do arguement, i don't know about parameter, but arguement in java, in, mmmh, in javascript
-            if(route.name==="Listings"){
+            if(route.name==="dash"){
              return <FontAwesome6 name='house-crack' size={24}color={color} />;//weuh, mmh, weuh, mmh, weuh, mmh, wueh even a return mmh, thing
             }
-            else if(route.name==='CreateListing'){
+            else if(route.name==='post'){
        return <MaterialIcons name="create-new-folder" size={30} color={color} />
      }
-     else if(route.name==='Trust'){
+     else if(route.name==='storage'){
          return <MaterialIcons name="luggage" size={29} color={color} />
         }
-            else if(route.name==='Profile'){
+            else if(route.name==='profile'){
           return <AntDesign name="user" size={27} color={color} />
         }
 
@@ -67,22 +67,20 @@ const bottomNavTab = createBottomTabNavigator({//now the  route
 
     }),
     screens:{
-        Listings:{
+        dash:{
             screen:Listings,
         }, 
 
-        CreateListing:{
+        post:{
             screen:CreateListing,
         }, 
 
-
-
-        Trust:{
+        storage:{
             screen:Trust,
             
         }, 
         
-        Profile:{
+        profile:{
             screen:Profile,
         }//ok, with the configs, for, mmh, for now, za, mmh, za the 'create'BottomTabNavigator
         //use it for this as the value for, as the value for in the screen config of the ..stackNavigat..
@@ -95,7 +93,7 @@ const bottomNavTab = createBottomTabNavigator({//now the  route
 );//karibu, mmh, karibu niseme useCreate.., i don't even know if, if, mmh if it will be at the, at the bottom, search it and bpp was like,daah! that, that, that is why it has the name bottom on it
 const configNavigation =createNativeStackNavigator({//tha natives on ios and android (Fragent). Behavior (transitions), performance
     
-    initialRouteName:'Account',// that, that, that, mmh, that ikiwa ivi, Account is a string, jjez ati inafaa kuwa inside '', na sii iyo ndio, na, na siiyo ndio string. Javascript* walai. But i, but i appreciate this framework juu kutumia Android Studio  ssh!
+    initialRouteName:'post',// that, that, that, mmh, that ikiwa ivi, Account is a string, jjez ati inafaa kuwa inside '', na sii iyo ndio, na, na siiyo ndio string. Javascript* walai. But i, but i appreciate this framework juu kutumia Android Studio  ssh!
     //the above 'Account' is just a what? an identifier huku, that in it takes the real Account component, that explains the '' that is for string, so i take back that specific critism on js*, but still in general i still maintain it
     
  screenOptions:()=>({//ii nayo i, i, i won't even, mmh, i would, mmh, i woun't even, i, i, i, i won't bother,mmh, even try to understand, mmh, understand at, at, at, at, at the moment
@@ -104,8 +102,8 @@ const configNavigation =createNativeStackNavigator({//tha natives on ios and and
     },   
     headerTintColor: 'black',
     headerTitleStyle: {
-        fontSize: 22,
-            fontWeight: '200',
+        fontSize: 12,
+       fontWeight:'200',
             color: 'black',
     },
     headerShadowVisible: false,//removes bottom, mmh, border, removes bottom border/shadow
@@ -116,44 +114,44 @@ const configNavigation =createNativeStackNavigator({//tha natives on ios and and
     }),
 
     screens:{// i, i, i, i extracted this as, as a dependency, as an installed dependency
-        Account:{
+        account:{
             screen:Account,//noe, mmh, now mmh, now, the single screen
         options:{//izi option zi, mmh, ziweke,mmh, ziweke uku chini, mmh, zi, zi, mmh, ziweke uku chinh, defining them in the bottonNavigationBar, did work how i had, mmmh, how, mmh, how i had structure it
                 headerShown:false,
             }
         },
-        Listing:{
+        dash:{
             screen:bottomNavTab,//so ita, mmh, itaiidetect you know, this navigaton thing..after i don't know having it in, mmh, in the App.tsx works...waah, i can't even explain it, but, mmh, but i have a hint of it
             options:{
                 headerShown:true,
                 title:'localcyclic'
             }
         },
-            Messages:{
+            mess:{
             screen:Messages,//so ita, mmh, itaiidetect you know, this navigaton thing..after i don't know having it in, mmh, in the App.tsx works...waah, i can't even explain it, but, mmh, but i have a hint of it
             options:{
                 headerShown:true,
             }
         },
-            CreateListing:{
+            post:{
             screen:bottomNavTab,//so ita, mmh, itaiidetect you know, this navigaton thing..after i don't know having it in, mmh, in the App.tsx works...waah, i can't even explain it, but, mmh, but i have a hint of it
             options:{
                 headerShown:true,
             }
         },
-            Trust:{
+            storage:{
             screen:bottomNavTab,//so ita, mmh, itaiidetect you know, this navigaton thing..after i don't know having it in, mmh, in the App.tsx works...waah, i can't even explain it, but, mmh, but i have a hint of it
             options:{
                 headerShown:true,
             }
         },
-         Profile:{
+         profile:{
             screen:bottomNavTab,//noe, mmh, now mmh, now, the single screen
             options:{
                 headerShown:true,
             }
         },
-              OTP:{
+              register:{
             screen:OTP,//noe, mmh, now mmh, now, the single screen
               options: {
                 headerShown: false,
