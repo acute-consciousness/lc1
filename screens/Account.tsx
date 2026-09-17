@@ -3,8 +3,7 @@ import  {CustomTextInput, ReturnError}  from '../looks/customComponents';
 import { useState } from 'react';
 import { Colours } from '../looks/Colours';
 import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import AccountToRouteParam from './Types';
+
 //i don't need to import Profile or OTP here, i think, or i'm interpretating  at the moment the reason for the root navigat..in the roote App.tsx, at runtime... it recognizes maybe 
 //just chaeck on the naming on the configs in Navigation.tsx 
 /**TODO, next time
@@ -32,7 +31,7 @@ export default function Account(){
     /**pro, probably tuna, tuna, tunadefine state hapa */
     const [text,setText]=useState('');//maybe it's an empty string <--this is just an extension of my mind talking
     const [disable, setEnable]=useState<boolean>(true);//state starts, mmh, as disabled is true, state, mmh, state starts as disabled is tru
-    const navigation = useNavigation<NativeStackNavigationProp<AccountToRouteParam>>();//outside the parathesis because we are defining, or issuing a type
+    const navigation = useNavigation();//outside the parathesis because we are defining, or issuing a type
     const onSubmit = (e:TextInputSubmitEditingEvent)=>{ // even that native can tell javascript, javascript, javascript ,mmh, that i has been hit
         if(disable==false){
             const nowSnapshot = e.nativeEvent.text;//replace text with value, let as name value text. remember we don't use the setState identifier
@@ -102,11 +101,11 @@ export default function Account(){
                 //i'll just, i'll just take the await meaning as i see it, wait, await
                 console.log(userObjectInJson);
                                 // ingekuwa onPress then a () => {a method then into {parameters}}
-                {navigation.navigate('Profile',{user:userObjectInJson})}//so its my variable which uses or is equals usenavigate. dot then it has, mmh other methods
+               navigation.navigate('Listings' as never);
             }
             else if(responseStatus===404){//jyea, 404 mmh, yea 404 ndio connection to the server is but, but what, but in my undersanding/ i remember that if the request is a successfull but no object, 404?, it gives back a null
                 const feedBack:string='did not find an account with that number';
-                {navigation.navigate('OTP',{feedbackAlert:feedBack})}
+                {navigation.navigate('OTP'as never)}
             }
             else if(responseStatus===500){
                 console.log("server connection error!");

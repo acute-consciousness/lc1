@@ -1,6 +1,9 @@
 import { View, Text, StyleSheet} from 'react-native';
 import { Colours } from '../looks/Colours';
-const Listings = ()=>{//bado exporting, mmmh, inanikalia
+
+function Listings({ route }: any) {//yea, ni :, so, the {}, ensures, ensures what, ensures many parameters. In there
+
+
     return(
         <View style={styles.viewMain}>
             <Text>listings!</Text>

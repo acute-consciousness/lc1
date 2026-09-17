@@ -3,34 +3,22 @@ import  {CustomTextInput, ReturnError}  from '../looks/customComponents';
 import { useState } from 'react';
 import { Colours } from '../looks/Colours';
 import { useNavigation } from '@react-navigation/native';
-type profileProps={//so props, mmh, i keep forgetting, ..with props
-    name:string,
-    aUserProperty:string,
-}
-const ComponentDisplay = (props:profileProps) =>{
-return(<View>
-    <Text>{props.name}: {props.aUserProperty}</Text>
-    </View>
-)
-}
-export default function Profile({ route }: any) {//yea, ni :, so, the {}, ensures, ensures what, ensures many parameters. In there
-    const accountObject = (route.params.user);
+
+export default function Profile() {//yea, ni :, so, the {}, ensures, ensures what, ensures many parameters. In there
+  
     //nimekaa hapa sana, sijui if, mmh, if i can implement, mmh, props, ....i have defined, mmh, i have
     //i have, mmh, i have defined the props. So, so, so, so what?
     // i should be able to reuse a component, one component, alright, so i should, mmh, i should be created
+  
 
     return (
         <View style={styles.viewMain}>
         <View style={styles.viewOne}>
-                <Text style={styles.label}>Your profile</Text>
             </View>
 
 
     <View style={styles.viewTwo}>
-        <ComponentDisplay name='name' aUserProperty={accountObject.username}/>
-        <ComponentDisplay name='email' aUserProperty={accountObject.email}/>//many of this but, but, mmh, but
-        <ComponentDisplay name='lattitude' aUserProperty={accountObject.latitude}/>
-        <ComponentDisplay  name = 'longitude'aUserProperty={accountObject.longititude}/>
+   
                 </View>
             </View>
 

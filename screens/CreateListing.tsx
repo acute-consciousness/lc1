@@ -73,18 +73,26 @@ const CustomDateTime = async (): Promise<Date | null> => {
 // the function to full send
 const DoEVerything = async() =>{
 //will have an async when sending but for now
+console.log("what does photo give, what type i mean?, and, mmh, and is there anything there"+image);
 console.log("Big Description:"+bigDescription);
 console.log("Price:"+price);
 console.log("type of furniture:"+type);
 console.log("condition:"+condition)
 
-
 const dateTime = await CustomDateTime();
-  if (dateTime) {
-    console.log("Date & time: " + dateTime);
-  } else {
-    console.log("Could not get network time — skipping or falling back.");
-  }
+if (dateTime!=null){
+  const dayOnly = dateTime.getDate();
+  const monthOnly  = dateTime.getMonth();
+  const yearOnly  = dateTime.getUTCDate;
+
+  console.log("date:"+dayOnly); 
+  console.log("month:"+monthOnly); 
+  console.log("year:"+dateTime); 
+}
+else{
+  console.log("date not found")
+}
+
 };
 
 
@@ -102,13 +110,13 @@ const dateTime = await CustomDateTime();
                 <View style={{alignItems:'center'}}>
               {isLoading && 
               <Text style={{fontSize:13,color:Colours.greens.openLibrary}}>
-                fetching image..
+                ...
                 </Text>
               }
                {error && <Text style={{ color:Colours.reds.one }}>{error}</Text>}
                 {!isLoading && success && (
                 <Text style={{fontSize:13,color:Colours.greens.openLibrary}}>
-                image picked successfully
+                photo fetched successfully
                 </Text>
                )}
                   {image && (
@@ -181,7 +189,7 @@ const dateTime = await CustomDateTime();
 
                  <CustomTouchableOpacity
                  onPress={DoEVerything}
-                 touchableText='full send'
+                 touchableText='full send!'
                  />
 
 </View>
@@ -230,7 +238,7 @@ export default CreateListing;
 
 
 
-//pick image from files logic
+//pick image from phone photos folder logic
 export interface PickedImage {
 uri: string;
 width: number;

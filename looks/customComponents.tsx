@@ -82,7 +82,7 @@ import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
         return (
     
    <TouchableOpacity onPress={props.onPress} style={{
-    backgroundColor:(!isDisabled==false)?Colours.greens.ileyaJamieGreen:Colours.greens.jamieGreenDeep,
+    backgroundColor:(!isDisabled==false)?Colours.blues.disableBlue:Colours.blues.openLibrary,
            paddingVertical: 15,
     paddingHorizontal: 50,  
     borderRadius:4,
@@ -120,11 +120,12 @@ import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
                        <TextInput style={styles.bigInput}
             placeholder={props.placeHolder}
             value={props.value}
-            keyboardType={props.keyboardType}
+            // keyboardType={props.keyboardType}
             onChangeText={props.onChangeText}
             onSubmitEditing={props.onSubmitEditing} 
             multiline={true}//so it is just this
             numberOfLines={9}
+            autoCorrect={false}
           
             />
             </View>

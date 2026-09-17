@@ -3,7 +3,7 @@ import { Colours } from '../looks/Colours';
 const Messages = ()=>{//bado exporting, mmmh, inanikalia
     return(
         <View style={styles.viewMain}>
-            <Text>Messages</Text>
+            <Text>messages!</Text>
             </View>
     )
 }

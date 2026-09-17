@@ -54,15 +54,15 @@ interface CustomDropdownProps {
             style={styles.viewPickFile
              }>
                 <MaterialIcons 
-                style={{
+              /**   style={{
                     marginRight:10
-                }} 
+                }} */
                 name="create-new-folder" size={29} color={Colours.greys.one} />
                 <Text
                  style={{
                     color:Colours.greys.one,
                     fontSize:13,
-                }}>pick an image</Text>
+                }}>Tap to pick a photo</Text>
             </TouchableOpacity>
             </View>
         )
@@ -79,7 +79,10 @@ const CustomDropdown = ({ items, value, onValueChange, placeholder }: CustomDrop
       <TouchableOpacity style={styles.trigger} onPress={() => setOpen(true)}>
         <Text style={selectedItem ? styles.triggerText : styles.placeholderText}>
           {selectedItem ? selectedItem.label : placeholder = placeholder}
-          <AntDesign name="caret-down" size={13} color="black"/>
+          <AntDesign name="caret-down" size={10} color="black"/>
+        </Text>
+        <Text>
+          
         </Text>
       </TouchableOpacity>
 
@@ -119,10 +122,11 @@ const styles = StyleSheet.create({
            paddingVertical:20,
            paddingHorizontal:25,
            width: '100%',      
-           alignItems:'center'  
+           alignItems:'center',
+        
   },
   triggerText: { 
-    flexDirection:'row',
+    flexDirection:'column',
      fontSize: 13,
            fontWeight: '400',
     color: Colours.blacks.clubHPlaceholders,
@@ -140,6 +144,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.4)',
     justifyContent: 'flex-end',
+    
   },
   sheet: {
            backgroundColor:Colours.thatIlike.darkish,
@@ -147,6 +152,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 16,
     maxHeight: '60%',
     paddingVertical: 1,
+    
   },
   option: {
     alignItems:'center',
@@ -154,6 +160,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderBottomWidth: 1,
     borderBottomColor: Colours.border.materialCategory,
+    
   },
   optionText: {
     fontSize: 13,
@@ -163,6 +170,7 @@ const styles = StyleSheet.create({
   },
 
         viewPickFile:{
+          justifyContent:'center',
          backgroundColor:Colours.thatIlike.darkish,
            borderWidth: 0.23,
            borderBottomWidth:0.4,
@@ -177,3 +185,7 @@ const styles = StyleSheet.create({
 });
 
 export {CustomDropdown, PickFileButton};
+
+//isDisable
+//onPress
+//touchableText
