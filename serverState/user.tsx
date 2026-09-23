@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+
 import axios from 'axios';
 
 
@@ -20,10 +20,3 @@ export const verifyPhoneExistsFn = async(phoneNumber:string)=>{
 }
 
 
-export const userFn = (phoneNumber:string) =>{
-   return useQuery({
-    queryKey:['user',phoneNumber],
-    queryFn:()=>{verifyPhoneExistsFn(phoneNumber)},//it refuses only just verifyPhoneExistsFn(phoneNumber), i have to wrap, and i haven't, mmh, and, and, and, what?, and i haven;t understood why
-})
- 
-}

@@ -1,52 +1,85 @@
-import { View, Text, StyleSheet, TextInputSubmitEditingEvent, Keyboard } from 'react-native';
-import  {CustomTextInput, ReturnError}  from '../looks/customComponents';
-import { useState } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { ReturnError } from '../looks/customComponents';
 import { Colours } from '../looks/Colours';
-import { useNavigation } from '@react-navigation/native';
+import { useQuery } from '@tanstack/react-query';
 
-export default function Profile() {//yea, ni :, so, the {}, ensures, ensures what, ensures many parameters. In there
-  
-    //nimekaa hapa sana, sijui if, mmh, if i can implement, mmh, props, ....i have defined, mmh, i have
-    //i have, mmh, i have defined the props. So, so, so, so what?
-    // i should be able to reuse a component, one component, alright, so i should, mmh, i should be created
-  
+type User = {
+  id: string;
+  email: string;
+  latitude: number;
+  phonenumber: string;
+  usernamer: string;
+};
 
+export default function Profile() {
+  const { data: user, isLoading, error } = useQuery<User>({
+    queryKey: ['user'],
+    queryFn: () => {
+      throw new Error('No user in cache');
+    },
+    enabled: false,
+  });
+
+  if (isLoading) {
     return (
-        <View style={styles.viewMain}>
-        <View style={styles.viewOne}>
-            </View>
-
-
-    <View style={styles.viewTwo}>
-   
-                </View>
-            </View>
-
-
-
+      <View style={styles.viewMain}>
+        <Text>...</Text>
+      </View>
     );
-}
+  }
 
+  if (error) {
+    return (
+      <View style={styles.viewMain}>
+        <ReturnError />
+      </View>
+    );
+  }
+
+  if (!user) {
+    return (
+      <View style={styles.viewMain}>
+        <Text>No user found</Text>
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.viewMain}>
+      <View style={styles.viewOne}>
+        <Text style={styles.text}>{user.username}</Text>
+        <Text style={styles.text}>{user.email}</Text>
+        <Text style={styles.text}>{user.phonenumber}</Text>
+        <Text style={styles.text}>{user.longititude},{user.latitude}</Text>
+      </View>
+      <View style={styles.viewTwo}>
+      </View>
+    </View>
+  );
+}
 const styles = StyleSheet.create({
     viewMain:{
        height:'100%',
         flexDirection:'column',
         backgroundColor:Colours.creeamish.fromCH,//no '', for the imports kwa the style, defo will not,mmh, defo will not remember this
+        alignItems:'center'
     },
 
         viewOne:{
-            alignItems: 'center',
-            width: '100%',
-            height:'30%',
-            // alignItems:'center', 
+           margin:10,
+            width: '90%',
+            minHeight:'20%',
+            borderRadius:5,
+            backgroundColor:Colours.greens.jamieGreenLigher,
             
         },
-            label:{
-            marginTop:'auto',
-            // fontFamily:'',
-            color: Colours.greens.ileyaJamieGreen,
-            fontWeight:500,
-            // textAlign: 'center',
+            text:{
+             color:Colours.blacks.clubHPlaceholders,             
+             textAlign: 'center',
+            paddingLeft:10,
+             paddingRight:10,
+             
+            marginBottom:1,
         },
     viewTwo: {
         marginTop:10,
