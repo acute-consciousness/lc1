@@ -79,6 +79,8 @@ const CustomDropdown = ({ items, value, onValueChange, placeholder }: CustomDrop
       <TouchableOpacity style={styles.trigger} onPress={() => setOpen(true)}>
         <Text style={selectedItem ? styles.triggerText : styles.placeholderText}>
           {selectedItem ? selectedItem.label : placeholder = placeholder}
+        </Text>
+        <Text>
           <AntDesign name="caret-down" size={10} color="black"/>
         </Text>
         <Text>
@@ -119,7 +121,7 @@ const styles = StyleSheet.create({
            borderBottomWidth:0.4,
            borderColor: '#E0E0E0',
     paddingTop:20,
-           paddingVertical:20,
+   
            paddingHorizontal:25,
            width: '100%',      
            alignItems:'center',
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
     flexDirection:'column',
      fontSize: 13,
            fontWeight: '400',
-    color: Colours.blacks.clubHPlaceholders,
+    color: Colours.blacks.openLibrary,
 
   
     },

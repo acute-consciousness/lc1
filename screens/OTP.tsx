@@ -1,19 +1,35 @@
-import { View, Text, StyleSheet,Modal, TextInputSubmitEditingEvent, Keyboard } from 'react-native';
+import { View, Text, StyleSheet,TextInput,Modal, TextInputSubmitEditingEvent, Keyboard } from 'react-native';
 import  {CustomTextInput, ReturnError}  from '../looks/customComponents';
 import { useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Colours } from '../looks/Colours';
 import { useNavigation } from '@react-navigation/native';
-export default function OTP({ route }: any) {// it was just this?({ route }: any),can i recall the mindpic of how what, mmh, of what we added on param
-    //nilikuwa story, mmh, za but hadi haina the type
+import { RouteParameterTypes } from '../ScreenRouteParametersTYpes';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { getPendingConfirmation } from './Account';
+//ii sijui \/
+export default function OTP() {// it was just this?({ route }: any),can i recall the mindpic of how what, mmh, of what we added on param
+    const authConfirmationFromAccount = getPendingConfirmation();
+    const [codeInputted, setCodeInputted]=useState('');
     return (
     
 
 <View style={styles.one}>
   
-            <View style={styles.two}>
-                                <Ionicons name="alert" size={24} color={Colours.reds.one} />
-                <Text>{(route.params.feedbackAlert)}</Text>
+            <View style={styles.label}>
+                <View style={styles.info}>
+                <Ionicons name="alert" size={24} color={Colours.reds.one} />
+                <Text>you don't have an account yet</Text>
+                </View>
+            </View>
+            <View style={styles.TextInputPart}>
+                 <TextInput style={styles.inputAlone}
+                            placeholder='enter code'
+                            keyboardType='numeric'
+                              placeholderTextColor={Colours.blacks.clubHPlaceholders}
+                              value={codeInputted}
+                              onChangeText={(char)=>setCodeInputted(char)}
+                            />
             </View>
        
         </View>
@@ -22,17 +38,43 @@ export default function OTP({ route }: any) {// it was just this?({ route }: any
 
 const styles = StyleSheet.create({
     one: {
-        justifyContent: 'center',
+        // justifyContent: 'center',
+        // alignItems:'center',
         backgroundColor: Colours.creeamish.fromCH,
         height:'100%',
+        width:'100%',
     },
-    two: {
-        margin: 10,
-        display:'flex',
+  
+    label: {
+    height:'30%',
+},
+info:{
+    justifyContent:'center',
+
+    alignItems:'center',
         flexDirection:'row',
-                  elevation: 8,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.25,
+          textAlign:'center',
+           marginTop:'auto', //marginTop auto on the item itself
     },
+    TextInputPart:{
+        marginTop:20,
+        height:'70%',
+        alignItems:'center'
+    },
+    inputAlone:{
+                  fontSize: 13,
+           fontWeight: '400',
+           backgroundColor:Colours.thatIlike.darkish,
+           color: Colours.blacks.clubHPlaceholders,
+           borderRadius:5,
+           borderWidth: 0.4,
+           borderBottomWidth:0.4,
+           borderBottomColor: '#E0E0E0',
+           paddingTop:20,
+           paddingBottom:20,
+           paddingHorizontal:25,
+             textAlign:'center', // Android: anchors text/placeholder to top
+           width: '70%',   
+            
+        },
 });

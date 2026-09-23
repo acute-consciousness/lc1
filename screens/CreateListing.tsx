@@ -131,7 +131,7 @@ else{
 
             <View style={styles.viewInputOne}>
                <BigTextInput
-                placeHolder={'add a little desciption about the item e.g,\n\nname of the item\n\nwhat is its size - dimensions..\n\nany defects or issues the potential new user should know about?'}
+                placeHolder={'describe the item. i.e. the name of the item, size or any issues the potential new user should know of'}
                 value={bigDescription}
                 onChangeText={(val)=>setBigDescription(val)}
                 // onSubmitEditing={}//nah, this held the final..i'm confuesed..this is for a like button and remember will, mmh, will be sending everything,i guess, for, for when someboy is done

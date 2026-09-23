@@ -54,7 +54,6 @@ const bottomNavTab = createBottomTabNavigator({
         tabBarActiveTintColor: Colours.blues.openLibrary,
         tabBarInactiveTintColor: Colours.blues.disableBlue,
     }),
-    initialRouteName: 'Listings',
     screens: {
         Listings: {
             screen: Listings,
@@ -90,7 +89,7 @@ const bottomNavTab = createBottomTabNavigator({
 
 // Root stack navigator — only ONE entry point into bottomNavTab now
 const configNavigation = createNativeStackNavigator({
-
+    initialRouteName:'Account',
     screens: {
         BottomTabHolderIdentifier: {
             screen: bottomNavTab,
@@ -108,7 +107,7 @@ const configNavigation = createNativeStackNavigator({
             screen: Account,
             options: {
                 headerShown: false,
-            }
+            },
         },
 
         // Single stack entry hosting the whole tab navigator.
@@ -117,7 +116,7 @@ const configNavigation = createNativeStackNavigator({
 
         
 
-        OTP: {
+        OneTimePassword: {
             screen: OTP,
             options: {
                 headerShown: false,

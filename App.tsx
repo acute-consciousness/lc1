@@ -6,16 +6,21 @@ import { NavigationContainer } from '@react-navigation/native';//this is me on a
 //and 'redudancy' - this is definately not the spelling, but it means unnecessary
 import WrapConfigNavigatorToRoot from './screens/Navigation';//no {} juu ya the wor default?
 import Account from './screens/Account';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const  queryClient = new QueryClient();
 //some...should be wrapped in a, in a what, in a NavigationContainer from the main/first layer navigation* dependency
 export default function App() {
   {NimbusRegular}
   return (
-  <View style={[SafeViewAndroid.AndroidSafeArea]}>
+    <View style={[SafeViewAndroid.AndroidSafeArea]}>
+    <QueryClientProvider client={queryClient}>
     <StatusBar style="auto" />
      <WrapConfigNavigatorToRoot/>// hapa i encountered some bugs before i settled, mmh, on this. I did the normal... and i was suggested a parathesis wrapper around.. and 
      //the return of the component  in itself the return did have a the parenthesis, you know what mean. Fixed it with,,fixed it 
      //fixed it with export default function identifier parenthesis and the java way parathesis and the return 
      //has parathesis and you return the component
+    </QueryClientProvider>
     </View>
   );
 }

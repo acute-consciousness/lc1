@@ -104,6 +104,7 @@ import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
             <View>
                        <TextInput style={styles.inputAlone}
             placeholder={props.placeHolder}
+              placeholderTextColor={Colours.blacks.clubHPlaceholders}
             value={props.value}
             keyboardType={props.keyboardType}
             onChangeText={props.onChangeText}
@@ -124,7 +125,7 @@ import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
             onChangeText={props.onChangeText}
             onSubmitEditing={props.onSubmitEditing} 
             multiline={true}//so it is just this
-            numberOfLines={9}
+            numberOfLines={8}
             autoCorrect={false}
           
             />
@@ -149,6 +150,7 @@ import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
                    <TextInput style={styles.input}
             placeholder={props.placeHolder}
             value={props.value}
+            placeholderTextColor={Colours.blacks.clubHPlaceholders}
             keyboardType={props.keyboardType}
             onChangeText={props.onChangeText}
             onSubmitEditing={props.onSubmitEditing} 
