@@ -48,7 +48,7 @@ interface CustomDropdownProps {
 
   const PickFileButton =(props:TextInputProps)=>{
         return(
-            <View>
+            <View style={{alignItems:'center'}}>
             <TouchableOpacity 
             onPress={props.onPress} 
             style={styles.viewPickFile
@@ -57,12 +57,7 @@ interface CustomDropdownProps {
               /**   style={{
                     marginRight:10
                 }} */
-                name="create-new-folder" size={29} color={Colours.greys.one} />
-                <Text
-                 style={{
-                    color:Colours.greys.one,
-                    fontSize:13,
-                }}>Tap to pick a photo</Text>
+                name="photo-size-select-actual" size={40} color={Colours.greys.one} />             
             </TouchableOpacity>
             </View>
         )
@@ -115,7 +110,7 @@ const CustomDropdown = ({ items, value, onValueChange, placeholder }: CustomDrop
 
 const styles = StyleSheet.create({
   trigger: {
-  backgroundColor:Colours.thatIlike.darkish,
+    backgroundColor:Colours.creeamish.openLibrary,
    borderRadius:4,
            borderWidth: 0.4,
            borderBottomWidth:0.4,
@@ -173,15 +168,10 @@ const styles = StyleSheet.create({
 
         viewPickFile:{
           justifyContent:'center',
-         backgroundColor:Colours.thatIlike.darkish,
-           borderWidth: 0.23,
-           borderBottomWidth:0.4,
-           borderBottomColor: '#E0E0E0',
-           paddingTop:15,
-           paddingVertical:15,
-           paddingHorizontal:25,
-           width: '100%',     
-           flexDirection:'row',
+           paddingTop:2,
+           paddingVertical:5,
+          
+       
 
 },
 });

@@ -7,6 +7,7 @@ import { RouteParameterTypes } from '../ScreenRouteParametersTYpes';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { verifyPhoneExistsFn } from '../serverState/user';
 import { useQueryClient } from '@tanstack/react-query';
+import { ResponseStatus } from '../serverState/user';
 
 export default function Account() {
   const [text, setText] = useState('');
@@ -39,6 +40,7 @@ export default function Account() {
     console.log({ text });
     const user = await verifyPhoneExistsFn(text);
     queryClient.setQueryData(['user'], user);
+    console.log("hey"+ResponseStatus);
     Keyboard.dismiss();
     // no navigation.navigate call here — RootNavigator swaps to
     // BottomTabHolderIdentifier automatically once ['user'] is set,

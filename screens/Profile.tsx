@@ -46,13 +46,15 @@ export default function Profile() {
 
   return (
     <View style={styles.viewMain}>
+        //should be using props here, do that later
       <View style={styles.viewOne}>
-        <Text style={styles.text}>{user.username}</Text>
-        <Text style={styles.text}>{user.email}</Text>
-        <Text style={styles.text}>{user.phonenumber}</Text>
-        <Text style={styles.text}>{user.longititude},{user.latitude}</Text>
+        <Text style={styles.viewNmAndEm}>{user.username}</Text>
+        <Text style={styles.viewNmAndEm}>{'\u2022'}{user.email}</Text>
+        {/* <Text style={styles.text}>{'\u25E6'}{user.phonenumber}</Text> */}
+        <Text style={styles.text}>{'\u25E6'}{user.longititude} , {user.latitude}</Text>
       </View>
       <View style={styles.viewTwo}>
+        <Text style={styles.label}>your listings</Text>
       </View>
     </View>
   );
@@ -66,20 +68,26 @@ const styles = StyleSheet.create({
     },
 
         viewOne:{
-           margin:10,
+           alignItems:'center',
             width: '90%',
             minHeight:'20%',
             borderRadius:5,
-            backgroundColor:Colours.greens.jamieGreenLigher,
+            backgroundColor:Colours.creeamish.openLibrary,
             
+        },
+        viewNmAndEm:{
+            alignItems:'center'
         },
             text:{
              color:Colours.blacks.clubHPlaceholders,             
-             textAlign: 'center',
-            paddingLeft:10,
-             paddingRight:10,
-             
+            // paddingLeft:30,        
             marginBottom:1,
+            alignItems:'center'
+        },
+        label:{
+            color:Colours.blues.blueGreenish,
+            textDecorationLine:'underline',
+            fontWeight:'500'
         },
     viewTwo: {
         marginTop:10,

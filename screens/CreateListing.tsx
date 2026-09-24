@@ -4,8 +4,10 @@ import { useState, useCallback } from 'react';
 import {CustomDropdown, PickFileButton } from '../looks/CustomComponenentTwo';
 import { TextInputAlone,BigTextInput,CustomTouchableOpacity } from '../looks/customComponents';
 import * as ImagePicker from 'expo-image-picker';
+import { postListing } from '../serverState/postListing';
+import { useQuery } from '@tanstack/react-query';
 
-const MaterialCategory = [
+export const MaterialCategory = [
   { label: 'Chair', value: 'chair' },
   { label: 'Table', value: 'table' },
   { label: 'Bed', value: 'bed' },
@@ -16,8 +18,8 @@ const MaterialCategory = [
   { label: 'Other', value: 'other' },
 ];
 
-const MaterialCondition = [
-  { label: 'Like new', value: 'like new' },
+export const MaterialCondition = [
+  { label: 'Like new', value: 'likeNew' },
   { label: 'excellent', value: 'excellent' },
   { label: 'good', value: 'good' },
   { label: 'fair', value: 'fair' },
@@ -34,30 +36,49 @@ interface posts{ photo?:string;
 
 
 
+type User = {
+  id: number|undefined;
+  email: string;
+  key: string;
+  latitude: string;
+  longititude: string; // keeping the backend's typo so it matches the JSON key exactly
+  phonenumber: string;
+  username: string;
+};
 
 
 
-const CreateListing= (props:posts)=>{//bado exporting, mmmh, inanikalia
-  //me
-  //big description
+
+const CreateListing= (props:posts)=>{
+  const {data} = useQuery<User>({
+      queryKey: ['user'],
+    queryFn: () => {
+      throw new Error('No user in cache');
+    },
+    enabled: false,
+  })
+
+
+
+
 const[bigDescription, setBigDescription]=useState('');//yea, let us have an empty sting, alright.i'm not even aware of the value form custom...
 
 
-  //the price
+
+const [photoURL,setphotoURL] = useState('');
+
 const [price, setPrice]=useState('');
 
 
-//the photo
 const { image, isLoading, error, pickImage, success,clearImage } = useImagePicker();
 
-//the type of furniture,   you wanna floss with the word materiality?
+
 const [type, setType] = useState<string | null>(null);   
 
 
 
 const [condition, setCondition] = useState<string | null>(null); 
 
-//get date and time
 const CustomDateTime = async (): Promise<Date | null> => {
   try {
     const response = await fetch('https://timeapi.io/api/time/current/zone?timeZone=UTC');
@@ -73,7 +94,9 @@ const CustomDateTime = async (): Promise<Date | null> => {
 // the function to full send
 const DoEVerything = async() =>{
 //will have an async when sending but for now
-console.log("what does photo give, what type i mean?, and, mmh, and is there anything there"+image);
+const idd = data?.id;
+console.log("URL"+photoURL);
+console.log("id"+idd);
 console.log("Big Description:"+bigDescription);
 console.log("Price:"+price);
 console.log("type of furniture:"+type);
@@ -84,7 +107,7 @@ if (dateTime!=null){
   const dayOnly = dateTime.getDate();
   const monthOnly  = dateTime.getMonth();
   const yearOnly  = dateTime.getUTCDate;
-
+  
   console.log("date:"+dayOnly); 
   console.log("month:"+monthOnly); 
   console.log("year:"+dateTime); 
@@ -93,6 +116,8 @@ else{
   console.log("date not found")
 }
 
+const responseFromAxios = await postListing(idd,photoURL,bigDescription,price,type,condition)
+console.log(responseFromAxios);
 };
 
 
@@ -127,6 +152,17 @@ else{
 
 
 
+                  <View style={styles.viewInputOne}>
+                    <TextInputAlone
+                    placeHolder='enter image URL '
+                    value={photoURL}
+                    onChangeText={(val)=>setphotoURL(val)}
+                    />
+            
+                 </View>
+
+
+
 
 
             <View style={styles.viewInputOne}>
@@ -134,8 +170,7 @@ else{
                 placeHolder={'describe the item. i.e. the name of the item, size or any issues the potential new user should know of'}
                 value={bigDescription}
                 onChangeText={(val)=>setBigDescription(val)}
-                // onSubmitEditing={}//nah, this held the final..i'm confuesed..this is for a like button and remember will, mmh, will be sending everything,i guess, for, for when someboy is done
-                //oh, the button full sent to the api
+              
                 />                
                  </View>
 
@@ -240,91 +275,150 @@ export default CreateListing;
 
 //pick image from phone photos folder logic
 export interface PickedImage {
-uri: string;
-width: number;
-height: number;
-fileName?: string | null;
-fileSize?: number | null;
-mimeType?: string | null;
+  uri: string;
+  width: number;
+  height: number;
+  fileName?: string | null;
+  fileSize?: number | null;
+  mimeType?: string | null;
 }
+
 interface UseImagePickerResult {
-image: PickedImage | null;
-isLoading: boolean;
-error: string | null;
-success: boolean;
-pickImage: () => Promise<PickedImage | null>;
-clearImage: () => void;
+  image: PickedImage | null;
+  isLoading: boolean;
+  isUploading: boolean;
+  error: string | null;
+  success: boolean;
+  pickImage: () => Promise<PickedImage | null>;
+  uploadImage: () => Promise<boolean>;
+  clearImage: () => void;
 }
+
+const API_URL = "http://YOUR_SERVER/api/photos";
+
 export function useImagePicker(): UseImagePickerResult {
-const [image, setImage] = useState<PickedImage | null>(null);
-const [isLoading, setIsLoading] = useState(false);
-const [error, setError] = useState<string | null>(null);
-const [success, setSuccess] = useState(false);
-const ensurePermission = useCallback(async (): Promise<boolean> => {
-const { granted, canAskAgain } =
-await ImagePicker.getMediaLibraryPermissionsAsync();
-if (granted) return true;
-if (!canAskAgain) {
-Alert.alert(
-'Permission required',
-'Photo library access is disabled. Enable it in Settings to pick an image.',
-[
-{ text: 'Cancel', style: 'cancel' },
-{ text: 'Open Settings', onPress: () => Linking.openSettings() },
-],
-);
-return false;
-}
-const requestResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
-if (!requestResult.granted) {
-setError('Permission to access photos was denied.');
-return false;
-}
-return true;
-}, []);
-const pickImage = useCallback(async (): Promise<PickedImage | null> => {
-setError(null);
-setIsLoading(true);
-setSuccess(false);
-try {
-const hasPermission = await ensurePermission();
-if (!hasPermission) {
-setIsLoading(false);
-return null;
-}
-const result = await ImagePicker.launchImageLibraryAsync({
-mediaTypes: ImagePicker.MediaTypeOptions.Images,
-allowsEditing: false,
-quality: 1,
-exif: false,
-});
-if (result.canceled) {
-setIsLoading(false);
-return null;
-}
-const asset = result.assets[0];
-const picked: PickedImage = {
-uri: asset.uri,
-width: asset.width,
-height: asset.height,
-fileName: asset.fileName,
-fileSize: asset.fileSize,
-mimeType: asset.mimeType,
-};
-setImage(picked);
-setSuccess(true);
-setIsLoading(false);
-return picked;
-} catch (err) {
-setError(err instanceof Error ? err.message : 'Something went wrong.');
-setIsLoading(false);
-return null;
-}
-}, [ensurePermission]);
-const clearImage = useCallback(() => {
-setImage(null);
-setError(null);
-setSuccess(false);
-}, []);
-return { image, isLoading, error,success, pickImage, clearImage };
+  const [image, setImage] = useState<PickedImage | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
+
+  const ensurePermission = useCallback(async (): Promise<boolean> => {
+    const { granted, canAskAgain } =
+      await ImagePicker.getMediaLibraryPermissionsAsync();
+    if (granted) return true;
+    if (!canAskAgain) {
+      Alert.alert(
+        "Permission required",
+        "Photo library access is disabled. Enable it in Settings to pick an image.",
+        [
+          { text: "Cancel", style: "cancel" },
+          { text: "Open Settings", onPress: () => Linking.openSettings() },
+        ]
+      );
+      return false;
+    }
+    const requestResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (!requestResult.granted) {
+      setError("Permission to access photos was denied.");
+      return false;
+    }
+    return true;
+  }, []);
+
+  const pickImage = useCallback(async (): Promise<PickedImage | null> => {
+    setError(null);
+    setIsLoading(true);
+    setSuccess(false);
+
+    try {
+      const hasPermission = await ensurePermission();
+      if (!hasPermission) {
+        setIsLoading(false);
+        return null;
+      }
+
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: false,
+        quality: 1,
+        exif: false,
+      });
+
+      if (result.canceled) {
+        setIsLoading(false);
+        return null;
+      }
+
+      const asset = result.assets[0];
+      const picked: PickedImage = {
+        uri: asset.uri,
+        width: asset.width,
+        height: asset.height,
+        fileName: asset.fileName,
+        fileSize: asset.fileSize,
+        mimeType: asset.mimeType,
+      };
+
+      setImage(picked);
+      setSuccess(true);
+      setIsLoading(false);
+      return picked;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong.");
+      setIsLoading(false);
+      return null;
+    }
+  }, [ensurePermission]);
+
+  const uploadImage = useCallback(async (): Promise<boolean> => {
+    if (!image) {
+      setError("No image selected.");
+      return false;
+    }
+
+    setIsUploading(true);
+    setError(null);
+    setSuccess(false);
+
+    try {
+      const formData = new FormData();
+
+      formData.append("photo", {
+        uri: image.uri,
+        name: image.fileName ?? "photo.jpg",
+        type: image.mimeType ?? "image/jpeg",
+      } as any);
+
+      formData.append("width", image.width.toString());
+      formData.append("height", image.height.toString());
+
+      const res = await fetch(API_URL, {
+        method: "POST",
+        body: formData,
+        // Do NOT set Content-Type — RN adds the multipart boundary
+      });
+
+      if (!res.ok) {
+        throw new Error(`Upload failed: ${res.status}`);
+      }
+
+      const data = await res.json();
+      setSuccess(true);
+      setIsUploading(false);
+      return true;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Upload failed.");
+      setIsUploading(false);
+      return false;
+    }
+  }, [image]);
+
+  const clearImage = useCallback(() => {
+    setImage(null);
+    setError(null);
+    setSuccess(false);
+  }, []);
+
+  return { image, isLoading, isUploading, error, success, pickImage, uploadImage, clearImage };
 }

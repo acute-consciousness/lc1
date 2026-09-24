@@ -82,7 +82,7 @@ import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
         return (
     
    <TouchableOpacity onPress={props.onPress} style={{
-    backgroundColor:(!isDisabled==false)?Colours.blues.disableBlue:Colours.blues.openLibrary,
+    backgroundColor:(!isDisabled==false)?Colours.greys.one:Colours.blacks.openLibrary,
            paddingVertical: 15,
     paddingHorizontal: 50,  
     borderRadius:4,
@@ -209,7 +209,7 @@ import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
   input:{
            fontSize: 13,
            fontWeight: '400',
-           backgroundColor:Colours.thatIlike.darkish,
+    backgroundColor:Colours.creeamish.openLibrary,
            color: Colours.blacks.clubHPlaceholders,
            borderRadius:4,
            borderWidth: 0.4,
@@ -224,7 +224,7 @@ import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
           inputAlone:{
                   fontSize: 13,
            fontWeight: '400',
-           backgroundColor:Colours.thatIlike.darkish,
+       backgroundColor:Colours.creeamish.openLibrary,
            color: Colours.blacks.clubHPlaceholders,
            borderRadius:5,
            borderWidth: 0.4,
@@ -239,7 +239,7 @@ import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
          bigInput:{
            fontSize: 13,
            fontWeight: '400',
-           backgroundColor:Colours.thatIlike.darkish,
+       backgroundColor:Colours.creeamish.openLibrary,
            color: Colours.blacks.clubHPlaceholders,
            borderRadius:5,
            borderWidth: 0.4,

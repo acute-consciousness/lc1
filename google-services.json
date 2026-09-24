@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "586588605398",
+    "project_id": "localcyclic-v2",
+    "storage_bucket": "localcyclic-v2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586588605398:android:f0d59dfaa061c8ee767277",
+        "android_client_info": {
+          "package_name": "com.localcyclic.localcyclicv2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWMYbxi3TZpth-BkWsULSIbT_HSuo-Y88"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

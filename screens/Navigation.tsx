@@ -40,8 +40,8 @@ function BottomTabs() {
         },
         headerTitleAlign: 'center',
         headerTitleStyle: {
-          fontSize: 15,
-          color: Colours.blacks.openLibrary,
+          fontSize: 13,
+          color: Colours.blues.blueGreenish
         },
         tabBarIcon: ({ color }) => {
           if (route.name === "Listings") {
@@ -54,15 +54,15 @@ function BottomTabs() {
             return <AntDesign name="user" size={27} color={color} />;
           }
         },
-        tabBarActiveTintColor: Colours.blues.openLibrary,
-        tabBarInactiveTintColor: Colours.blues.disableBlue,
+        tabBarActiveTintColor: Colours.greens.jamieGreenDeep,
+        tabBarInactiveTintColor: Colours.greys.one,
       })}
       initialRouteName="Listings"
     >
       <Tab.Screen name="Listings" component={Listings} options={{ headerShown: true, title: 'localcyclic' }} />
       <Tab.Screen name="CreateListing" component={CreateListing} options={{ headerShown: true, title: 'post an item' }} />
       <Tab.Screen name="Messages" component={Messages} options={{ headerShown: true, title: 'messages' }} />
-      <Tab.Screen name="Profile" component={Profile} options={{ headerShown: true, title: 'Your profile' }} />
+      <Tab.Screen name="Profile" component={Profile} options={{ headerShown: true, title: 'profile' }} />
     </Tab.Navigator>
   );
 }
