@@ -1,0 +1,626 @@
+alafu chini
+ this was a function, it does retrn a component
+real, plain function
+so
+export const useUser = () =>
+useQuery([users],fetchUser)//wewe, wewe ngoja tutarudi, mmh
+tutarudi hapa
+
+and so...
+And, mmh, and so, and, and, mmh, and so
+//on a HomeScreen.tsx
+import React from 'react';
+import View, flat, mmh, flatlist ...from 'react-native'
+import useUsers...from ..hooks/useUser
+and so
+alafu ile data thing tulitumia hapo
+anway, any, mmh, anyway
+const {data, isloading, error}=useUsers();
+if(isLoading) return <Text> loading..
+if(error) return, if, mmh, if error return 
+<teXT> Error, mmh, error loading user</Text>;
+return, mmh
+return(
+<FlatList again ii data thing, mmh, mmh, mmh, again ii data thin
+data={data}
+keyExtractor={(item)=>item.if.toStroing}..
+have to chech out flatlist
+then
+renderItem={({item})=>Text>{item.name}
+)
+
+continuing, mmh, continuing
+Refetching data, mmh, refetching data
+const {data, refetch} = useUsers();
+
+//trigger, mmh, trigger\//trigger
+mmh, //trigger manual, manual, mmh, 
+//trigger manual refresh
+<Button title="Refresh Users" on..
+onPress={() =>refetch()}
+
+
+so, so, so, what, so trigger manual refresh
+//so trigger manual refresh
+alafu, a;afu, mmh, alafu
+
+
+caching, caching and stale time
+react, react, React Query auto, auto, mmh
+React Query automatically cache
+react, query automatically caches the data. you can customize, mmh
+you can customize its, you, mmh, you can customize its, its
+its behaviour 
+useQuery(['users'], fetchUsers,{
+staleTim:1000*60*5,//5minutes
+cacheTime:1000*60*10//10, mmh, 10 minutes
+})
+
+Error,mmh, error hadnling& retry, mmh, 
+Error, Error, Error Handling & Retry Logic
+Error handling, mmh, Error Handling & Retry Logic
+iyo, mmh, iyo, mmh, iyo mmh
+iyo ingine ilikuw what?
+ilikuwa caching staleTime:
+na
+cacheTime
+
+
+so
+
+fungumi, fumbaluya, fumbaluya, mmh, fumbaluya fu
+fu, fumetoka, fum
+before, going on with, 
+
+waaah, waaah, waaaah, waaah
+
+i'm back to how i was, Eric aki
+
+18th Sep 2026
+that mutation, that, mmh, that mutation
+Ana, ana, analogy - think of it like, think of it like
+pressing a button:
+mmh, mmh, mmh, think of it like pressing a button
+
+useQuery  = use, mmh, use, mmh, useQuery = opening
+a book. it happens, mmh, it happens automatically when, it, it
+happens automatically when you "look at the page"
+it, mmh, it, mmh, it happens automatically
+it happens automatically when you look at a page
+mmmh,
+what was useQuery?
+it was server-side 'state', this is what i can remember
+server-side, it can get messy
+that is where react- query comes in, tanstack query and
+so on
+then...
+in the root of the e.g. App.ts... have something
+i can't remember whatexactly
+i, mmh, i can't remember what exactly but
+atleast i remember the overall flow
+then in its own place...the example, the example, mmh
+the example i checked out, mmh, the example i 
+looked at... had it in hooks
+oh and i remember he called it useUser.tx
+so there is useQuery and a ...provider
+this i did not write but the 
+let me look at it again
+cosnt queryClient, yaani identifier = new QueryClient();
+ok
+a function, real, mmh, real, real, real function
+
+const identifier = () =>{
+then what<ii ni kwa the root of the app, don't know
+if it is called root but, mmh, but anyway>
+..
+.
+.
+<NavigationContainer>
+
+}
+
+
+then fetching data
+the same import useQuery.. si the same ili ingine was Query, QueryClient
+const fetchUsers = async()=>{
+const {data} = oh, the data keyword = await axios.get()url
+return data;
+
+
+export what
+
+
+}
+
+const useUsers =()=>
+useQuery(['users'],fetchUsers)
+
+import {useUsers} from, mmh, from '../hooks/useUsers';
+in like HomeScreen =()=>{
+const {data,isLoadin} =useUser();//is this, is this what
+//useUser
+}
+
+
+ii itabidi niulize, mmh, ii, mmh, ii, mmh, ii itabidi niulize..
+if(isLoading.. so return word so my error thing, mmh, mght, mmh, might work??
+if eii reutTex)
+
+so pia FlatList
+so, mmh, so pia FlatList
+
+refreshing data 
+can i remember it??
+const{data, refresh} = useUsers()
+
+//trigger manual reo
+onPress refresh
+
+useQuery(['users'], fetchUsers, {
+staleTime: 1000*60*5,//5minutes, mmh, 5, 5, 5, 5 minutes
+cacheTime:1000*60*10,//10 minutes
+
+
+})
+
+
+ati error handling and retry logic
+
+
+useQuery([''users], fetchUsers, {
+retry:3;//retry failed request 3 times
+onError:(err)=>{
+console, mmh, console.error('Fetch failed:'err)
+}
+
+})
+kabla, mmh, kabla tuingie mutation let us ask our
+ask, mmh ask the questions
+
+that data, isloading and error, mmh, and error
+are, mmh, are not build into, are, mmh, are not
+built into, are, mmh, are not built into react itself
+they come from one, mmh, they come from one of two sources
+a d, a , a data-fetching library, mmh, like tanstack query, SWR, s, mmh
+swr or rtkquery
+these, mmh, these libraries hooks
+this library hooks e.g. useQuery, e.g., mmh, e.g.
+useQuery return, return an object with those
+return, mmh, return an object with those fields 
+return an object with ths... as, as, as, as, as
+as part of their API
+two as a custom hook your, mmh, as a custom hook your team, 
+mmh, as, as, what, as a custom hook your team wro..tha
+that bundles three useState xals into one, into one, ok, 
+into one return, mmh, into, mmh, into one return,
+into, mmh, into, one return object
+con [data]
+isLo
+error
+return{data,isLoading, eror}
+whatever to structiring...restructuring, i
+i, mmh, i will stick with, i, mmh, i will still with my interpretation
+and so, mmh, and so useMutation
+
+
+useMutation = prseeing a button
+submit a form delete an item
+it, mmh, it happens when, mmh
+it, it, it, it happens when you tell is 
+useMutation
+mutation means a change or alteration in form, 
+a, a, a, a
+a change or alteration in form or qualities
+what it actuallly does
+const {mutate, isPedning, isError, data}
+= useMutation({
+mutationFn - i, mmh, i, i think mutation function
+mutationFn:(newTodo)=> fetch('/api/todos),{
+method:'POST',
+body:JSON.stringify(newdo)
+
+.thenr.json()
+
+},
+on, on, on what, 
+onSuccess:() =>{
+//refresh your, on, mmh, onSuccess, onSuccess
+//refresh, mmh, refresh your list after
+//refresh
+//refresh your list after the
+/refresh, mmh, refresh what, refresh your list after the new item is addes
+queryClient.invalidateQueries({queryKey:['todos']})
+},
+onError:(err) => {
+console.error('Something, mmh, something went wrong', err
+
+)
+}
+})
+
+mutate(data) -  the function ou call to trigger the request, mmh, 
+the, the, the, the, the
+the what
+ the function you call to trigger the request
+isPending - true while the request is in flight (show, mmh, show a spinner)
+isError true if failes
+data - the server's response once it, the what, t
+he server's response once it succeeds
+then in a component
+const mutate, isPendin=useMutation
+
+onCLick . ..=>mutate({title:'Buy Milk'
+disable = {isPendi}
+
+{isPending?adding..':'add todo'}mmh</button>
+invalidateQueries is a mthod,on the queryClient that does two things:
+1. marks matching queries as stale their cache data is now
+"out of date"
+2. immediatelt refetches any that are active
+
+queryClient.invalidateQuerie({queryKey:['todos']})
+and so
+and so, 
+mmh, mmh, mmh, mmh,, 
+and so
+
+
+Mutation Example:POST, PUT, DELETE
+POST, MMH, POST, PUT, DELETE
+
+..return data;
+
+const useAdd
+const queryClinet =useQuecline
+return useMuta(addUser, {
+onSuccess:() = >{
+queryClient.invalidateQuerire('users')}})
+brooo, brooooo, brroooo
+iyo, mmh, iyo, mmh, iyo sijashika
+i was, what, i was to learn about flatlist, mmh, 
+flatlist and, and what and authenti, authenti, mmh
+authetication
+mehn, mafeel sijui aje, even reading, mmh, even reading this
+flat, mmh, this, this, 
+reading this flastlist thinh
+afterward we, mmh
+afterwards we will ask what the RecycleList thing, mmh
+list thing, list, mmh, list thing compare here
+that, mmh, that using, mmh, that using ListViews
+r
+
+
+
+Using List Views
+react native provides a suite
+react native provides a suite, a set or a groupi think\for presenting 
+for presenting lists of data
+is it of the, is, mmh, is it of the type liss
+suite of components for presenting lists
+of data. generally, you'll want to use either, generally
+you'll want to use either FlatList or SecionList
+Flat, mmh, FlatList or SectionList
+FlatList or SectionList
+the FlatlList component mmh, the FlatList component
+displays a, the FlatList component displays a scrolling list 
+displays, mmh, displays a scrolling list of changing
+a,a, a scrolling list of chaning, but similar structures data. FlatLis
+    works well for a 
+Flatlist works well for long lists of data, wheer the num
+for long lists of data, where the number, mmh, where the number of items might, 
+where, where, where the number of items might change over time
+unlike, mmh, unlike the more generic ScrollViw, unlike he more
+generic(common??), unlike the more genric ScrollView, the 
+flatlit only render, the FlatList only render elements
+that are, only renders elements, mmh, only renders elements that 
+are currently showing on scree, not, not, mmh
+not all the what, not, mmh, not all the elements
+at onve
+only, only renders elements that are curre
+only renders elements that, mmh, elements that are currently
+showing on the screen, not, mmh, not all the elements at once
+the flatlist component require two props, the
+the, the FlatList component requires, mmh, the, the
+what, the FlatList component requires two props
+data, mmh, data, mmh, data and renderItem
+data, data, data and renderItme
+receives, mmh, received two props data, data, data,
+data and renderItem
+data is the source of imformation for the list
+render Item takes one item from the source, takes one
+item from the source and returns
+render, mmh, renderItm takes one item from the source
+and, and, one item from the source and return a formatte componet co, what
+each item in the data props, each, mmh, each items in the 
+data prps is rendered as a Text Component
+the 
+so
+return(
+<View style={styles.container}>
+<FlatList
+data={[
+{key:'Devin'},
+{Key:'Dan'},
+{Key:'whatever..}
+
+]}
+soo, so, so, so, so, so that was data
+render, mmh, render, mmmh, renderItem={
+(item, now is this a parameter???
+item, mmh, item, item, item, item, now, now what
+now is this a parameter  - that is how ,that, mmh, that
+is how i will take it)
+ite, doesn't look like a parameter..
+and so 
+({item}) it look like a predetermined thing
+it, mmh, it, looks, like, what
+it, it, it, it what?
+it looks like a predetermined thing
+it, mmh, it, it does what, it looks like a predetermined
+
+({item}) => <Text style={styles, mmh, styles.items}>
+{}
+item, mmh, item.key in a Text, mmh, in, mmh, in a Text 
+component
+
+
+{]
+}
+
+)
+
+if, mmh, if you want to render a set of data broken, mmh, a 
+set of data broken into logical section, may
+that if you want, mmh, that if you want to render
+a set of data broken into ligical sections, mmh, maybe'with section headers, simi to UITableView on 
+IOS, then , then what
+the SectionList is, mmh, mmmh, mmmh, then a, then a 
+what,
+then a SectionList is the way to go.
+<SectionList sections={
+{title:'D', data:['Devein','Dan','Domi', 'Dominic'}],
+{tilt
+
+then
+renderItem ..tie
+mimi, mimi sielww
+keyExtractor...
+
+
+}
+that, mmh, that what, that, mmh, that, mmh that what
+that one of the most common uses for, that, mmh
+that one of the most common uses for a 
+for a what, one of the most common uses for a list view is, mmh, 
+is displaying data, mmh, mmmh, is displaying data that you, that you
+fetch]
+is displaying data that you
+fetch froma server,
+to, what, to do that, you, or i, you will need to learn about networking in
+react native, let us, mmh, let us take a glance
+let, mmh, let, mmh, let us take a glance at it
+let, mmh, let, mmh, let us take a glance at it.
+fetch..
+method
+headers:{
+Accept:'pp/json- i thin the tyoe
+'Content-Tpye:''
+oh, mmh, this is a post
+
+
+//i, you what, i think we stringify the things, the things ww
+body:Json 
+body:JSON.stringify({
+firstParam:'yourValue'}), mmh
+SecondParam:'you, mmh, yourOtherVlaue',
+
+axios
+ax, mmh
+ax, mmh, 
+
+Axios
+axios, mmh, axios, mmh, 
+axios, nini, axios hadi, hadi
+hadi, what?, hadi iyo place ya typescript
+wlecome to the axios documentation!, welcome, mmh
+welcome to what?
+welcome to the axios documentation! this guide will, mmh, this guide will help you get
+started with axios and, with axios and, and, 
+and make your first API. If, mmh, if you are what?
+if you are new to axios, we, we, we what, we recommend starting here
+if, if, if you're new to axios
+
+
+
+installing
+npm install, mmh, n, n, n, n what, npm install axios
+naona bun, i think i have been con, con what
+confusing bun, confusing, mmh, confusing bun and deno
+yea, na deno, na, mmh, na deno i mean
+na
+nana
+
+na
+na deno i mean
+usign jsDelivr if you don't 'want want to install it in,
+if, mmh, if you don't want to install it overall in your project
+once instaled you can import, mmh, once, mmh,once installed 
+you, mmh, you what
+you can eihter, you, mmh, you can either import or, import
+sawa, import or require it in your project
+
+import axios from 'axios';
+console, mmh, console.log(axios.isCancel('''somethign') okay, the, the, mmh, the emoji
+
+using require, using require... any, any, any, mmh, anyway
+
+
+Making, mmh, making your first, mmh, 
+Making your first request
+making your first request
+an axios request can , request can be made in as fe, as two
+,,by providing, mmh, by providing the URL and method, by, mmh, 
+by, by, by, by whar, ...providing the URL
+providing, mmh, what
+by providing the URL and method
+mmh, by
+url amd ,e by providing an URL and method
+that, that for example, to, to to what
+to make a Get <- oo, oh, that is what he means by method
+the  dot.. like 
+.get
+and so, and, mmh, and so
+const response = await axios.get(
+await axios, const repsoaxios.get, request, my first request
+then""
+double, mmh, double thing
+);
+
+then we can console, then , mmh, then we can console, data
+axios.get methodto make a waht
+to make a POST to, mmh reponse.data, okay
+axios,get method to make a GET rh, equest, the axios.post method to, mm
+to maje a 
+
+to make a POST request, oo
+oh, oh, there is also a pst request??
+you can also suse the axios.request method, mmh, method to do what
+you, mmh, you can also use the axios.requestmethof to make
+to, mmh, ti make a request with any method
+so, so, so
+const response  =await axios.get("http..",{timeout:5000,''5 seconf
+bro kama hadi locally it, mmh, it is an issue...
+see time
+see timeout i t ans erreo jnajnjdn
+
+without, wihout a timeourt, a stalled request can hand, without, mmh
+without timeout, a stalled request can hang indefinitely. Pass, mmh, pass
+one via the request, via, mmh via, mmh, via the request config:
+
+Next, mmh next steos
+
+features - axios is a powerful, mmh, axios is a poer..HTTP client
+that prov simple and e
+api for HTTP request, mmh, sa
+modern brwosers support and tis, mmh, and is widely
+used, and, mh, and, mmh, and is widely used in the 
+javascript communty. here are so,e, mmh, her are some of the feature that, mmh
+here, here,, here are some of the featues that make axios a great choice
+for your, mmh, for your, mmh, for your next project
+
+ISomorphic
+iso, s
+isomoprthis, frontend, mmh, frontend and, front, mmh
+isormo and backend for building progressive mmh, for , mmh, for 
+what, for building progressive web apps, for, mmh
+for what, for building , for, mmh, for, for what, 
+for building progressive, mmh for, for what?
+for building progressive web apps, single, mmh, single-page
+application  - ok, and, and server-side, server, mmh
+server-side rendered application
+automatic se, mmh, auto, mmh, auto what???
+automatic serialization
+setting bandwith limit - my head says, timeout but defo im, 95% con, 
+convinced that, mmh, convinced that, that, mmh
+that it is not it
+and so 
+.get
+.post
+.put
+.patch, mmh, mmh, mmh, .patch
+.
+.
+.
+. mmh
+.delete
+using, mmh, using what, using, mmh, using, mmh, using what
+
+using async/await
+using, mmh, using, mmmh, 
+using sync/await
+so
+cins
+
+const getPosts = async()=>{
+try{
+const response = await axios.get(
+"https://..."{
+params:{, iyo ingiine ilik
+postId:5
+)
+con.log()rspo.dat
+}
+cathcerro
+console.erro
+finally ('''request completed')//for me now,ached, better would be request ended
+.opst(url),
+{,
+body, 
+title:"foo"
+userId, mmh,
+}
+
+}
+put the sa,e ...userId..
+patch,...ilikuwa ya temporary change
+naona title pekee hap
+delt.
+.dele
+naona
+/pst/1 - kwa, mmh, kwa url
+
+TYpe, mmh
+
+
+
+TYPESCRIPT
+naona, sijui, mmh, sijui kama ni the types. but, but, naona
+
+import type, mmh, import type 
+{AxiosRequestConfig, AxiosResponse, AxiosError}
+from, mmh, from "axios
+"
+use a generic type parametr on the, on the response
+to, mmh, to tell TypeScript what shape
+to, mmh, to tell typescrit what shape your
+to, mmh, to tell typescript what shape your data, to, mmh, 
+to tell typescript what sha[e y
+what, mmh, what shape your data will have
+typing a request
+
+type post = {
+userId:number;
+if:numern
+titel:sring
+body:str
+
+const response = await acoit.get <Post...ooh, ii post naona juu, ni kaama props..you knwo what i mea
+we define, then obvious here we have the typr as the, whole them.title
+in javai would, in java i would say because this is what we are
+returning then, mmh
+then .id
+then dot id
+
+console, mmh, 
+consol.e
+
+for typing a function
+iyo ingine ilikuwa, mmh, ilikuwa tyign
+ilikuwa,, mmh, ilikuwa typing a, typing mmh, typing a request
+yenye ikona a reti
+ati
+
+
+ati, ati, mmh, ati, mmh ati, ati, ati, ati nini
+const getPost  = async(id:number):Promise<Post>=>{
+
+mi ahadi sishiki
+alafu naona
+...axios.get<Post>(
+...);
+return, mmh, retunr response.data;
+weeuh, mmh, 
+weeuhh, izo, izo, mmh, izo zingine naaah!
+
+
+

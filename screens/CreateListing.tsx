@@ -1,4 +1,4 @@
-import { View, Text,Alert,Linking,TextInputSubmitEditingEvent,Image,StyleSheet,KeyboardAvoidingView, Platform, ScrollView} from 'react-native';
+import { View, Text,Alert,Linking,TextInputSubmitEditingEvent,ActivityIndicator,Image,StyleSheet,KeyboardAvoidingView, Platform, ScrollView} from 'react-native';
 import { Colours } from '../looks/Colours';
 import { useState, useCallback } from 'react';
 import {CustomDropdown, PickFileButton } from '../looks/CustomComponenentTwo';
@@ -41,7 +41,7 @@ type User = {
   email: string;
   key: string;
   latitude: string;
-  longititude: string; // keeping the backend's typo so it matches the JSON key exactly
+  longititude: string; 
   phonenumber: string;
   username: string;
 };
@@ -61,9 +61,7 @@ const CreateListing= (props:posts)=>{
 
 
 
-const[bigDescription, setBigDescription]=useState('');//yea, let us have an empty sting, alright.i'm not even aware of the value form custom...
-
-
+const[bigDescription, setBigDescription]=useState('');
 
 const [photoURL,setphotoURL] = useState('');
 
@@ -79,53 +77,39 @@ const [type, setType] = useState<string | null>(null);
 
 const [condition, setCondition] = useState<string | null>(null); 
 
-const CustomDateTime = async (): Promise<Date | null> => {
-  try {
-    const response = await fetch('https://timeapi.io/api/time/current/zone?timeZone=UTC');
-    const data = await response.json();
-    return new Date(data.dateTime);
-  } catch (err) {
-    console.log('Failed to fetch network time:', err);
-    return null;
-  }
-};
-
+const [postSuccess, setpostSuccess]=useState(false);
+const[postLoading, setpostLoading] = useState(false)
 
 // the function to full send
 const DoEVerything = async() =>{
-//will have an async when sending but for now
+
 const idd = data?.id;
-console.log("URL"+photoURL);
-console.log("id"+idd);
-console.log("Big Description:"+bigDescription);
-console.log("Price:"+price);
-console.log("type of furniture:"+type);
-console.log("condition:"+condition)
-
-const dateTime = await CustomDateTime();
-if (dateTime!=null){
-  const dayOnly = dateTime.getDate();
-  const monthOnly  = dateTime.getMonth();
-  const yearOnly  = dateTime.getUTCDate;
-  
-  console.log("date:"+dayOnly); 
-  console.log("month:"+monthOnly); 
-  console.log("year:"+dateTime); 
+let wasitSuccess;
+try{
+wasitSuccess= await postListing(idd,photoURL,bigDescription,price,type,condition)
+if(wasitSuccess.data){
+  setpostSuccess(true);
 }
-else{
-  console.log("date not found")
+else if(wasitSuccess.loading) {
+  setpostLoading(true);
+}
+}
+catch(e:any){
+  console.log(wasitSuccess.error);
 }
 
-const responseFromAxios = await postListing(idd,photoURL,bigDescription,price,type,condition)
-console.log(responseFromAxios);
+
+
 };
 
-
-
+if(postSuccess==true) return (<View style={styles.viewMain}>
+  <Text>listing created successfully</Text>
+  <Text>Button to create new post</Text>//bpp supposed to refresh create listing screen or something
+</View>)
+else
     return(
       
-        <ScrollView style={styles.viewParent}>
-
+        <ScrollView style={styles.viewParent}>:
 
         <View style={styles.viewMain}>
                      
@@ -224,7 +208,7 @@ console.log(responseFromAxios);
 
                  <CustomTouchableOpacity
                  onPress={DoEVerything}
-                 touchableText='full send!'
+                 placeHolder = {postLoading==false?'full send':<ActivityIndicator size={24} color={Colours.forBanners.valleyOrange}/>}
                  />
 
 </View>

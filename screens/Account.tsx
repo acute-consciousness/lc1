@@ -7,13 +7,38 @@ import { RouteParameterTypes } from '../ScreenRouteParametersTYpes';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { verifyPhoneExistsFn } from '../serverState/user';
 import { useQueryClient } from '@tanstack/react-query';
-import { ResponseStatus } from '../serverState/user';
+
 
 export default function Account() {
   const [text, setText] = useState('');
   const [disable, setEnable] = useState<boolean>(true);
   const navigation = useNavigation<NativeStackNavigationProp<RouteParameterTypes>>();
   const queryClient = useQueryClient();
+ 
+  const createonfourOfour = async(phoneN:string)=>{
+    
+  }
+
+   const onPressFnct = async () => {
+    const user = await verifyPhoneExistsFn(text);
+    if (user?.status == 200) {
+  queryClient.setQueryData(['user'], user.data);  // ← just the data
+}
+    else if(user?.status==404){
+      navigation.navigate('OneTimePassword',{message:'did not find an account'})
+              createonfourOfour(text);
+    }
+     else if(user?.status==500){
+      console.log('server connection error!')
+    }
+    Keyboard.dismiss();
+    // no navigation.navigate call here — RootNavigator swaps to
+    // BottomTabHolderIdentifier automatically once ['user'] is set,
+    // and BottomTabs opens on the "Listings" tab by default
+  }
+
+
+
 
   const onSubmit = (e: TextInputSubmitEditingEvent) => {
     if (disable == false) {
@@ -36,16 +61,7 @@ export default function Account() {
     else setEnable(true);
   }
 
-  const onPressFnct = async () => {
-    console.log({ text });
-    const user = await verifyPhoneExistsFn(text);
-    queryClient.setQueryData(['user'], user);
-    console.log("hey"+ResponseStatus);
-    Keyboard.dismiss();
-    // no navigation.navigate call here — RootNavigator swaps to
-    // BottomTabHolderIdentifier automatically once ['user'] is set,
-    // and BottomTabs opens on the "Listings" tab by default
-  }
+ 
 
   return (
     <View style={styles.one}>

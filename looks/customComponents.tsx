@@ -10,7 +10,7 @@ import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
 
  interface TextInputProps {
     label?:ReactNode;
-        placeHolder?:string;
+        placeHolder?:any;
         value?:string;
         onChangeText?:(e:any)=>void; onSubmitEditing?:(e:any)=>void;
         touchableText?:string;
@@ -82,7 +82,7 @@ import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
         return (
     
    <TouchableOpacity onPress={props.onPress} style={{
-    backgroundColor:(!isDisabled==false)?Colours.greys.one:Colours.blacks.openLibrary,
+    backgroundColor:(!isDisabled==false)?Colours.greys.one: Colours.greens.jamieGreenDeep,
            paddingVertical: 15,
     paddingHorizontal: 50,  
     borderRadius:4,

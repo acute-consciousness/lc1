@@ -4,12 +4,12 @@ import { useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Colours } from '../looks/Colours';
 import { useNavigation } from '@react-navigation/native';
-import { RouteParameterTypes } from '../ScreenRouteParametersTYpes';
+import { RouteParameterTypes } from '../ScreenRouteParametersTYpes';//TODO have the route type as message from my navigation, mmh, form the navigation types
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { getPendingConfirmation } from './Account';
 //ii sijui \/
-export default function OTP() {// it was just this?({ route }: any),can i recall the mindpic of how what, mmh, of what we added on param
-    const authConfirmationFromAccount = getPendingConfirmation();
+
+export default function OTP({route}:any) {// it was just this?({ route }: any),can i recall the mindpic of how what, mmh, of what we added on param
+    const {message} = route.params;
     const [codeInputted, setCodeInputted]=useState('');
     return (
     
@@ -18,8 +18,16 @@ export default function OTP() {// it was just this?({ route }: any),can i recall
   
             <View style={styles.label}>
                 <View style={styles.info}>
-                <Ionicons name="alert" size={24} color={Colours.reds.one} />
-                <Text>you don't have an account yet</Text>
+                   
+
+
+              
+                <Text style={styles.infoTexts}>
+                     <Ionicons name="alert" size={24} color={Colours.reds.one} /> 
+                    {message}</Text>
+                                <Text style={styles.infoTexts}>associated with that number</Text>
+                                <Text></Text>
+            <Text style={styles.infoTexts}>so wait for an otp to be sent</Text>
                 </View>
             </View>
             <View style={styles.TextInputPart}>
@@ -50,11 +58,13 @@ const styles = StyleSheet.create({
 },
 info:{
     justifyContent:'center',
-
-    alignItems:'center',
-        flexDirection:'row',
+    alignItems:'center',     
           textAlign:'center',
            marginTop:'auto', //marginTop auto on the item itself
+    },
+    infoTexts:{
+        width:'80%',
+        alignItems:'center',
     },
     TextInputPart:{
         marginTop:20,

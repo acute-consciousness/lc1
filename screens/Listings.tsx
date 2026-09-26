@@ -1,12 +1,23 @@
-import { View, Text, StyleSheet} from 'react-native';
+import { View, Text, StyleSheet, FlatList} from 'react-native';
 import { Colours } from '../looks/Colours';
+import { Test } from '../serverState/fetchListings';
 
-function Listings({ route }: any) {//yea, ni :, so, the {}, ensures, ensures what, ensures many parameters. In there
+import { CustomTouchableOpacity } from '../looks/customComponents';
 
+const theTestFunction =()=>{
+    Test();
+}
+
+const Listings = () =>{//yea, ni :, so, the {}, ensures, ensures what, ensures many parameters. In there
 
     return(
         <View style={styles.viewMain}>
-            <Text>listings!</Text>
+            
+            <CustomTouchableOpacity
+            placeHolder='Test'
+            onPress={theTestFunction}
+            />
+            
             </View>
     )
 }
