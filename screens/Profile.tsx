@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
             alignItems:'center'
         },
         label:{
-            color:Colours.blues.blueGreenish,
+            color:Colours.blacks.openLibrary,
             textDecorationLine:'underline',
             fontWeight:'500'
         },

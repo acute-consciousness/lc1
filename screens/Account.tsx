@@ -13,6 +13,7 @@ export default function Account() {
   const [text, setText] = useState('');
   const [disable, setEnable] = useState<boolean>(true);
   const navigation = useNavigation<NativeStackNavigationProp<RouteParameterTypes>>();
+  const [load,setLoading]=useState(false);
   const queryClient = useQueryClient();
  
   const createonfourOfour = async(phoneN:string)=>{
@@ -20,6 +21,8 @@ export default function Account() {
   }
 
    const onPressFnct = async () => {
+    setLoading(true);
+    try{
     const user = await verifyPhoneExistsFn(text);
     if (user?.status == 200) {
   queryClient.setQueryData(['user'], user.data);  // ← just the data
@@ -35,6 +38,14 @@ export default function Account() {
     // no navigation.navigate call here — RootNavigator swaps to
     // BottomTabHolderIdentifier automatically once ['user'] is set,
     // and BottomTabs opens on the "Listings" tab by default
+  }
+  catch(e:any){
+    console.log(e);
+  }
+  finally{
+    setLoading(false);
+  }
+
   }
 
 
@@ -76,6 +87,7 @@ export default function Account() {
           touchableText='continue'
           keyboardType="phone-pad"
           disabled={disable}
+          load={load}
           onPress={onPressFnct}
         />
         <View>

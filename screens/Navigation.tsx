@@ -41,7 +41,7 @@ function BottomTabs() {
         headerTitleAlign: 'center',
         headerTitleStyle: {
           fontSize: 13,
-          color: Colours.blues.blueGreenish
+          color: Colours.blacks.bitMOreTwo
         },
         tabBarIcon: ({ color }) => {
           if (route.name === "Listings") {

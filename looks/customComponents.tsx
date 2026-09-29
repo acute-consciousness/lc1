@@ -1,4 +1,4 @@
-import {View,Text,TextInput,StyleSheet,KeyboardAvoidingView, Platform, TouchableOpacity,TextInputSubmitEditingEvent, Modal, KeyboardTypeOptions} from 'react-native';
+import {View,Text,TextInput,StyleSheet,ActivityIndicator,KeyboardAvoidingView, Platform, TouchableOpacity,TextInputSubmitEditingEvent, Modal, KeyboardTypeOptions} from 'react-native';
 import { Colours } from './Colours';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ReactNode } from 'react';
@@ -16,7 +16,9 @@ import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
         touchableText?:string;
         keyboardType?:KeyboardTypeOptions;
         disabled?:boolean;
+        limit?:number;
         onPress?:(e:any)=>void;
+        load?:boolean;
         
     }
     interface Alerters{
@@ -78,19 +80,29 @@ import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
                 isDisabled=false;
 
     }
+    let lload;
+    if(props.load){
+        lload=props.load;
+    }
+    else{
+        lload=true;
+    }
 
         return (
     
    <TouchableOpacity onPress={props.onPress} style={{
-    backgroundColor:(!isDisabled==false)?Colours.greys.one: Colours.greens.jamieGreenDeep,
+    backgroundColor:(!isDisabled==false)?Colours.greens.jamieGreenLigher: Colours.greens.jamieGreenDeep,
            paddingVertical: 15,
     paddingHorizontal: 50,  
     borderRadius:4,
     alignItems:'center'
 
    }}
-    disabled={props.disabled}>//what about props.onchange. But we haven't defined this
-                    <Text style={styles.btnText}>{props.touchableText}</Text>
+    disabled={props.disabled}>
+          {lload==false
+    ? <ActivityIndicator size={24} color={Colours.forBanners.valleyOrange} />
+    :  <Text style={styles.btnText}>{props.touchableText}</Text>}
+                   
                 </TouchableOpacity>
 
         )
@@ -104,8 +116,9 @@ import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
             <View>
                        <TextInput style={styles.inputAlone}
             placeholder={props.placeHolder}
-              placeholderTextColor={Colours.blacks.clubHPlaceholders}
+              placeholderTextColor={Colours.greys.one}
             value={props.value}
+            maxLength={props.limit}
             keyboardType={props.keyboardType}
             onChangeText={props.onChangeText}
             onSubmitEditing={props.onSubmitEditing} 
@@ -120,12 +133,13 @@ import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
             <View>
                        <TextInput style={styles.bigInput}
             placeholder={props.placeHolder}
+            placeholderTextColor={Colours.greys.one}
             value={props.value}
             // keyboardType={props.keyboardType}
             onChangeText={props.onChangeText}
             onSubmitEditing={props.onSubmitEditing} 
             multiline={true}//so it is just this
-            numberOfLines={8}
+            numberOfLines={5}
             autoCorrect={false}
           
             />
@@ -224,14 +238,13 @@ import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
           inputAlone:{
                   fontSize: 13,
            fontWeight: '400',
-       backgroundColor:Colours.creeamish.openLibrary,
            color: Colours.blacks.clubHPlaceholders,
+           backgroundColor:Colours.creeamish.fromCH,
+           borderWidth:0.8,
            borderRadius:5,
-           borderWidth: 0.4,
-           borderBottomWidth:0.4,
-           borderBottomColor: '#E0E0E0',
-           paddingTop:20,
-           paddingHorizontal:25,
+           borderColor:Colours.greys.one,
+           paddingTop:7,
+       
              textAlign:'center', // Android: anchors text/placeholder to top
            width: '100%',   
             
@@ -239,17 +252,17 @@ import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
          bigInput:{
            fontSize: 13,
            fontWeight: '400',
-       backgroundColor:Colours.creeamish.openLibrary,
+       backgroundColor:Colours.creeamish.fromCH,
            color: Colours.blacks.clubHPlaceholders,
-           borderRadius:5,
-           borderWidth: 0.4,
-           borderBottomWidth:0.4,
-           borderBottomColor: '#E0E0E0',
-           paddingTop:20,
+           borderRadius:10,
+           borderWidth: 0.6,
+           borderBottomWidth:0.6,
+           borderColor:Colours.greys.one,
+           paddingTop:10,
            paddingHorizontal:25,
              textAlignVertical: 'top', // Android: anchors text/placeholder to top
            width: '100%',   
-            minHeight: 160, // fixed dp instead of '30%'
+            minHeight: 135, // fixed dp instead of '30%'
         },
         
         viewThree:{

@@ -71,8 +71,8 @@ const CustomDropdown = ({ items, value, onValueChange, placeholder }: CustomDrop
 
   return (
     <View>
-      <TouchableOpacity style={styles.trigger} onPress={() => setOpen(true)}>
-        <Text style={selectedItem ? styles.triggerText : styles.placeholderText}>
+      <TouchableOpacity style={styles.main} onPress={() => setOpen(true)}>
+        <Text style={selectedItem ? styles.mainText : styles.placeholderText}>
           {selectedItem ? selectedItem.label : placeholder = placeholder}
         </Text>
         <Text>
@@ -109,20 +109,18 @@ const CustomDropdown = ({ items, value, onValueChange, placeholder }: CustomDrop
 };
 
 const styles = StyleSheet.create({
-  trigger: {
-    backgroundColor:Colours.creeamish.openLibrary,
+  main: {
+    backgroundColor:Colours.creeamish.fromCH,
    borderRadius:4,
-           borderWidth: 0.4,
-           borderBottomWidth:0.4,
-           borderColor: '#E0E0E0',
-    paddingTop:20,
-   
-           paddingHorizontal:25,
+            borderWidth: 0.8,
+           borderBottomWidth:0.6,
+           borderColor:Colours.greys.one,
+    paddingTop:10,
            width: '100%',      
            alignItems:'center',
         
   },
-  triggerText: { 
+  mainText: { 
     flexDirection:'column',
      fontSize: 13,
            fontWeight: '400',
@@ -134,7 +132,7 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     fontSize: 13,
            fontWeight: '400',
-    color: Colours.blacks.clubHPlaceholders,
+    color: Colours.greens.jamieGreenDeep,
    
     },
   backdrop: {
