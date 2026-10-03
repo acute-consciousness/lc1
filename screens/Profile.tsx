@@ -50,7 +50,6 @@ export default function Profile() {
       <View style={styles.viewOne}>
         <Text style={styles.viewNmAndEm}>{user.username}</Text>
         <Text style={styles.viewNmAndEm}>{'\u2022'}{user.email}</Text>
-        {/* <Text style={styles.text}>{'\u25E6'}{user.phonenumber}</Text> */}
         <Text style={styles.text}>{'\u25E6'}{user.longititude} , {user.latitude}</Text>
       </View>
       <View style={styles.viewTwo}>
@@ -85,7 +84,7 @@ const styles = StyleSheet.create({
             alignItems:'center'
         },
         label:{
-            color:Colours.blacks.openLibrary,
+            color:Colours.blacks.bitMOreTwo,
             textDecorationLine:'underline',
             fontWeight:'500'
         },

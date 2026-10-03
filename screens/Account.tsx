@@ -1,6 +1,7 @@
-import { View, Text, StyleSheet, TextInputSubmitEditingEvent, Keyboard } from 'react-native';
+import { View, Text,Modal, StyleSheet, TextInputSubmitEditingEvent, Keyboard } from 'react-native';
 import { CustomTextInput, ReturnError, TextInputAlone } from '../looks/customComponents';
 import { useState } from 'react';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { Colours } from '../looks/Colours';
 import { useNavigation } from '@react-navigation/native';
 import { RouteParameterTypes } from '../ScreenRouteParametersTYpes';
@@ -13,11 +14,47 @@ export default function Account() {
   const [text, setText] = useState('');
   const [disable, setEnable] = useState<boolean>(true);
   const navigation = useNavigation<NativeStackNavigationProp<RouteParameterTypes>>();
-  const [load,setLoading]=useState(false);
+  const [loading,setLoading]=useState(false);
+  const [errorMessages, seterrorMessages]=useState('');
+  const [otpCode, setOtpCode] = useState("")
   const queryClient = useQueryClient();
- 
+
+  
+
+  const generateOTP = ()=>{
+      const answer=`${Math.floor(Math.random() * 10000)}`.padStart(4, "0");
+      setOtpCode(answer);
+      return answer;
+  }
   const createonfourOfour = async(phoneN:string)=>{
-    
+    let response:any;
+    try{
+      setLoading(true);
+     const codde= generateOTP();
+      response = await fetch(
+        'https://api.textbee.dev/api/v1/gateway/send-sms',{
+          method:'POST',
+          headers:{
+      'x-api-key': process.env.EXPO_PUBLIC_TEXTBEE_API_KEY,
+      'Content-Type': 'application/json',
+          },
+          body:JSON.stringify({
+            deviceId:'6abfc236cf8e7692e012a6e7',
+            recipients:[phoneN],
+            message:'verificaton code is:'+codde,
+          })
+        }
+
+      )
+    }
+    catch(e){
+      console.log(e);
+    }
+    finally{
+      setLoading(false);
+      console.log('Otp request process finished') 
+    }
+    return response;
   }
 
    const onPressFnct = async () => {
@@ -25,14 +62,29 @@ export default function Account() {
     try{
     const user = await verifyPhoneExistsFn(text);
     if (user?.status == 200) {
-  queryClient.setQueryData(['user'], user.data);  // ← just the data
+  queryClient.setQueryData(['user'], user.data);
 }
     else if(user?.status==404){
-      navigation.navigate('OneTimePassword',{message:'did not find an account'})
-              createonfourOfour(text);
+      try{
+      const result = await createonfourOfour('254'+text);
+      console.log(result.data);
+      if(result.status==200){
+        navigation.navigate('OneTimePassword',{
+          message:'did not find an account',
+          phoneNumber:{text},
+          karua:{otpCode}
+        })
+      }
+      setEnable(true);
+
+      }
+      catch(e:any){
+        console.log('textbee failed'+e);
+      }
     }
      else if(user?.status==500){
       console.log('server connection error!')
+      seterrorMessages('server connection error!')
     }
     Keyboard.dismiss();
     // no navigation.navigate call here — RootNavigator swaps to
@@ -76,7 +128,16 @@ export default function Account() {
 
   return (
     <View style={styles.one}>
-      <View></View>
+                <View style={{
+                 elevation: 8,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+            }}>
+                <Ionicons name="alert" size={24} color={Colours.reds.one} />
+                <Text>{errorMessages}</Text>
+                </View>
+                
       <View style={styles.two}>
         <CustomTextInput
           label={<Text>enter mobile number</Text>}
@@ -87,7 +148,7 @@ export default function Account() {
           touchableText='continue'
           keyboardType="phone-pad"
           disabled={disable}
-          load={load}
+          load={loading}
           onPress={onPressFnct}
         />
         <View>

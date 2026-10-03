@@ -54,12 +54,12 @@ function BottomTabs() {
             return <AntDesign name="user" size={27} color={color} />;
           }
         },
-        tabBarActiveTintColor: Colours.greens.jamieGreenDeep,
+        tabBarActiveTintColor: Colours.blacks.bitMOreTwo,
         tabBarInactiveTintColor: Colours.greys.one,
       })}
       initialRouteName="Listings"
     >
-      <Tab.Screen name="Listings" component={Listings} options={{ headerShown: true, title: 'localcyclic' }} />
+      <Tab.Screen name="Listings" component={Listings} options={{ headerShown: true, title: 'meauu' }} />
       <Tab.Screen name="CreateListing" component={CreateListing} options={{ headerShown: true, title: 'post an item' }} />
       <Tab.Screen name="Messages" component={Messages} options={{ headerShown: true, title: 'messages' }} />
       <Tab.Screen name="Profile" component={Profile} options={{ headerShown: true, title: 'profile' }} />

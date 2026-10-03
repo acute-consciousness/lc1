@@ -80,18 +80,12 @@ import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
                 isDisabled=false;
 
     }
-    let lload;
-    if(props.load){
-        lload=props.load;
-    }
-    else{
-        lload=true;
-    }
+   
 
         return (
     
    <TouchableOpacity onPress={props.onPress} style={{
-    backgroundColor:(!isDisabled==false)?Colours.greens.jamieGreenLigher: Colours.greens.jamieGreenDeep,
+    backgroundColor:(!isDisabled==false)?Colours.greys.one: Colours.blacks.bitMOreTwo,
            paddingVertical: 15,
     paddingHorizontal: 50,  
     borderRadius:4,
@@ -99,8 +93,8 @@ import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
 
    }}
     disabled={props.disabled}>
-          {lload==false
-    ? <ActivityIndicator size={24} color={Colours.forBanners.valleyOrange} />
+          {(props.load==true)
+    ? <ActivityIndicator size={24} color={Colours.blacks.another} />
     :  <Text style={styles.btnText}>{props.touchableText}</Text>}
                    
                 </TouchableOpacity>
@@ -223,7 +217,7 @@ import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
   input:{
            fontSize: 13,
            fontWeight: '400',
-    backgroundColor:Colours.creeamish.openLibrary,
+    backgroundColor:Colours.thatIlike.darkish,
            color: Colours.blacks.clubHPlaceholders,
            borderRadius:4,
            borderWidth: 0.4,
@@ -239,7 +233,7 @@ import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
                   fontSize: 13,
            fontWeight: '400',
            color: Colours.blacks.clubHPlaceholders,
-           backgroundColor:Colours.creeamish.fromCH,
+               backgroundColor:Colours.thatIlike.darkish,
            borderWidth:0.8,
            borderRadius:5,
            borderColor:Colours.greys.one,
@@ -252,7 +246,7 @@ import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
          bigInput:{
            fontSize: 13,
            fontWeight: '400',
-       backgroundColor:Colours.creeamish.fromCH,
+           backgroundColor:Colours.thatIlike.darkish,
            color: Colours.blacks.clubHPlaceholders,
            borderRadius:10,
            borderWidth: 0.6,

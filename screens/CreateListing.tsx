@@ -230,7 +230,7 @@ else
 <View style={styles.ViewTwoThree}>
 
                  <TouchableOpacity onPress={DoEVerything} style={{
-    backgroundColor:Colours.greens.ileyaJamieGreen,
+    backgroundColor:Colours.blacks.bitMOreTwo,
            paddingVertical: 15,
     paddingHorizontal: 50,  
     borderRadius:8,
@@ -284,7 +284,7 @@ const styles=StyleSheet.create({
 
     },
     correctText:{
-      color:Colours.greens.jamieGreenDeep,
+      color:Colours.greens.ileyaJamieGreen,
 
     },
 viewParent:{
@@ -320,7 +320,7 @@ viewLabel:{
 },
 label:{
   fontSize:13,
-            color: Colours.greens.ileyaJamieGreen,
+            color: Colours.blacks.bitMOreTwo,
 },
 
 

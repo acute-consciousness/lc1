@@ -6,11 +6,34 @@ import { Colours } from '../looks/Colours';
 import { useNavigation } from '@react-navigation/native';
 import { RouteParameterTypes } from '../ScreenRouteParametersTYpes';//TODO have the route type as message from my navigation, mmh, form the navigation types
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-//ii sijui \/
+import { create_Account_for_user } from '../serverState/user';
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function OTP({route}:any) {// it was just this?({ route }: any),can i recall the mindpic of how what, mmh, of what we added on param
-    const {message} = route.params;
-    const [codeInputted, setCodeInputted]=useState('');
+     const { message, phoneNumber, karua } = route.params;
+     const [value, setValue]=useState('');
+    const query = useQueryClient();
+
+    const toPost =async (key:string,phone:string)=>{
+        try {
+             const user= await create_Account_for_user(key,phone);
+        console.log("does it work"+user.data);
+        query.setQueryData(['user'],user.data);
+        } catch (error) {
+            console.log(error);
+        }
+       
+    }
+    const funnyction = (charr:string)=>{
+        setValue(charr);
+        if(charr.length==4){
+            if(charr==karua){
+                toPost(phoneNumber,phoneNumber)
+            }
+
+        }
+
+    }
     return (
     
 
@@ -35,8 +58,8 @@ export default function OTP({route}:any) {// it was just this?({ route }: any),c
                             placeholder='enter code'
                             keyboardType='numeric'
                               placeholderTextColor={Colours.blacks.clubHPlaceholders}
-                              value={codeInputted}
-                              onChangeText={(char)=>setCodeInputted(char)}
+                              value={value}
+                              onChangeText={(char)=>funnyction(char)}
                             />
             </View>
        

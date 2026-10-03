@@ -29,8 +29,6 @@
       }
     },
     "plugins": [
-      "@react-native-firebase/app",
-      "@react-native-firebase/auth",
       "expo-font",
       "expo-splash-screen",
       [
@@ -38,7 +36,8 @@
         {
           "photosPermission": "The app needs permission to select item photos."
         }
-      ]
+      ],
+      "@react-native-community/datetimepicker"
     ]
   }
 }

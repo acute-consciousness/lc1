@@ -132,7 +132,6 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     fontSize: 13,
            fontWeight: '400',
-    color: Colours.greens.jamieGreenDeep,
    
     },
   backdrop: {
