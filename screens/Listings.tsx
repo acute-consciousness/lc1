@@ -31,7 +31,7 @@ const Listings = () => {
         console.log("useFocusEffect fired");
       const aFunction = async () => {
         try {
-       const responseOfListings = await axios.get(`http://192.168.2.11:8080/items/getalllistings`);
+       const responseOfListings = await axios.get(`http://10.127.77.100:8080/items/getalllistings`);
           setListings(responseOfListings.data);
         } catch (error) {
           console.log(error);

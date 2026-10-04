@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet} from 'react-native';
 import { Colours } from '../looks/Colours';
-const Messages = ()=>{//bado exporting, mmmh, inanikalia
+const Messages = ()=>{
     return(
         <View style={styles.viewMain}>
             <Text>messages!</Text>

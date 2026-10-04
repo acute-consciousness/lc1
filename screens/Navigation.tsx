@@ -59,7 +59,7 @@ function BottomTabs() {
       })}
       initialRouteName="Listings"
     >
-      <Tab.Screen name="Listings" component={Listings} options={{ headerShown: true, title: 'meauu' }} />
+      <Tab.Screen name="Listings" component={Listings} options={{ headerShown: true, title: 'localcylic' }} />
       <Tab.Screen name="CreateListing" component={CreateListing} options={{ headerShown: true, title: 'post an item' }} />
       <Tab.Screen name="Messages" component={Messages} options={{ headerShown: true, title: 'messages' }} />
       <Tab.Screen name="Profile" component={Profile} options={{ headerShown: true, title: 'profile' }} />

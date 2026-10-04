@@ -1,276 +1,273 @@
-import {View,Text,TextInput,StyleSheet,ActivityIndicator,KeyboardAvoidingView, Platform, TouchableOpacity,TextInputSubmitEditingEvent, Modal, KeyboardTypeOptions} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  ActivityIndicator,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableOpacity,
+  Modal,
+  KeyboardTypeOptions,
+} from 'react-native';
 import { Colours } from './Colours';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ReactNode } from 'react';
 
-import { Picker } from '@react-native-picker/picker';
-import RNPickerSelect, { PickerStyle } from 'react-native-picker-select';
+interface TextInputProps {
+  label?: ReactNode;
+  placeHolder?: any;
+  value?: string;
+  onChangeText?: (e: any) => void;
+  onSubmitEditing?: (e: any) => void;
+  touchableText?: string;
+  keyboardType?: KeyboardTypeOptions;
+  disabled?: boolean;
+  limit?: number;
+  onPress?: (e: any) => void;
+  load?: boolean;
+}
 
+interface Alerters {
+  feedBackText?: ReactNode;
+}
 
+const ReturnError = (props: Alerters) => {
+  return (
+    <Modal transparent animationType="fade">
+      <View
+        style={{
+          width: '100%',
+          backgroundColor: Colours.creeamish.fromCH,
+        }}
+      >
+        <View
+          style={{
+            elevation: 8,
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 0.25,
+          }}
+        >
+          <Ionicons name="alert" size={24} color={Colours.reds.one} />
+          <Text>{props.feedBackText}</Text>
+        </View>
+      </View>
+    </Modal>
+  );
+};
 
- interface TextInputProps {
-    label?:ReactNode;
-        placeHolder?:any;
-        value?:string;
-        onChangeText?:(e:any)=>void; onSubmitEditing?:(e:any)=>void;
-        touchableText?:string;
-        keyboardType?:KeyboardTypeOptions;
-        disabled?:boolean;
-        limit?:number;
-        onPress?:(e:any)=>void;
-        load?:boolean;
-        
-    }
-    interface Alerters{
-        feedBackText?:ReactNode,
-    }
+const FeedBackAlerter = (props: Alerters) => {
+  return (
+    <View
+      style={{
+        width: '100%',
+        backgroundColor: Colours.creeamish.fromCH,
+      }}
+    >
+      <View>
+        {/* icons should be in, icons should be conditional */}
+        <Ionicons name="checkmark-outline" size={32} color={Colours.greens.openLibrary} />
+        <Ionicons name="alert" size={24} color={Colours.reds.one} />
+        <Text>{props.feedBackText}</Text>
+      </View>
+    </View>
+  );
+};
 
-   const ReturnError = (props:Alerters)=> {
-        return(
-            <Modal transparent animationType="fade">
-                <View style={{
-                width:'100%',
-                backgroundColor:Colours.creeamish.fromCH,
+const CustomTouchableOpacity = (props: TextInputProps) => {
+  const isDisabled = props.disabled === true;
+  const isLoading = props.load === true;
 
-            }}><View style={{
-                 elevation: 8,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.25,
-            }}>
-                <Ionicons name="alert" size={24} color={Colours.reds.one} />
-                <Text>{props.feedBackText}
-                </Text>
-                </View>
-                </View>
+  return (
+    <TouchableOpacity
+      onPress={props.onPress}
+      // blocked while disabled OR loading, so a second tap can't fire another request
+      disabled={isDisabled || isLoading}
+      style={{
+        // grey only when disabled and NOT loading, so the spinner shows on the normal dark button
+        backgroundColor: isDisabled && !isLoading ? Colours.greys.one : Colours.blacks.bitMOreTwo,
+        paddingVertical: 15,
+        paddingHorizontal: 50,
+        borderRadius: 4,
+        alignItems: 'center',
+      }}
+    >
+      {isLoading ? (
+        // same colour as the button text, so it is visible on the dark button
+        <ActivityIndicator size="small" color={Colours.creeamish.fromCH} />
+      ) : (
+        <Text style={styles.btnText}>{props.touchableText}</Text>
+      )}
+    </TouchableOpacity>
+  );
+};
 
-            </Modal>
-        )
-    }
+const TextInputAlone = (props: TextInputProps) => {
+  return (
+    <View>
+      <TextInput
+        style={styles.inputAlone}
+        placeholder={props.placeHolder}
+        placeholderTextColor={Colours.greys.one}
+        value={props.value}
+        maxLength={props.limit}
+        keyboardType={props.keyboardType}
+        onChangeText={props.onChangeText}
+        onSubmitEditing={props.onSubmitEditing}
+      />
+    </View>
+  );
+};
 
+const BigTextInput = (props: TextInputProps) => {
+  return (
+    <View>
+      <TextInput
+        style={styles.bigInput}
+        placeholder={props.placeHolder}
+        placeholderTextColor={Colours.greys.one}
+        value={props.value}
+        onChangeText={props.onChangeText}
+        onSubmitEditing={props.onSubmitEditing}
+        multiline={true}
+        numberOfLines={5}
+        autoCorrect={false}
+      />
+    </View>
+  );
+};
 
-  
+const CustomTextInput = (props: TextInputProps) => {
+  return (
+    <View style={styles.viewMain}>
+      <View style={styles.viewOne}>
+        <Text style={styles.label}>{props.label}</Text>
+      </View>
 
-    const FeedBackAlerter = (props:Alerters)=> {
-        return(
-            <View style={{
-                width:'100%',
-                backgroundColor:Colours.creeamish.fromCH,
-
-
-            }}><View style={{}}>
-                //icons should be in, icons should be conditional
-                <Ionicons name="checkmark-outline" size={32} color={Colours.greens.openLibrary} />
-                <Ionicons name="alert" size={24} color={Colours.reds.one} />
-                <Text>{props.feedBackText}
-                </Text>
-                </View>
-
-            </View>
-        )
-    }
-
-
-
-   const CustomTouchableOpacity = (props:TextInputProps)=> {
-    let isDisabled;
-    if(props.disabled){ isDisabled=props.disabled;
-    }
-    else{
-                isDisabled=false;
-
-    }
-   
-
-        return (
-    
-   <TouchableOpacity onPress={props.onPress} style={{
-    backgroundColor:(!isDisabled==false)?Colours.greys.one: Colours.blacks.bitMOreTwo,
-           paddingVertical: 15,
-    paddingHorizontal: 50,  
-    borderRadius:4,
-    alignItems:'center'
-
-   }}
-    disabled={props.disabled}>
-          {(props.load==true)
-    ? <ActivityIndicator size={24} color={Colours.blacks.another} />
-    :  <Text style={styles.btnText}>{props.touchableText}</Text>}
-                   
-                </TouchableOpacity>
-
-        )
-    }
-
-  
-
-
-    const TextInputAlone =(props:TextInputProps)=>{
-        return(
-            <View>
-                       <TextInput style={styles.inputAlone}
-            placeholder={props.placeHolder}
-              placeholderTextColor={Colours.greys.one}
-            value={props.value}
-            maxLength={props.limit}
-            keyboardType={props.keyboardType}
-            onChangeText={props.onChangeText}
-            onSubmitEditing={props.onSubmitEditing} 
+      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        <View style={styles.ViewTwoThree}>
+          <View style={styles.viewTwo}>
+            <TextInput
+              style={styles.input}
+              placeholder={props.placeHolder}
+              value={props.value}
+              placeholderTextColor={Colours.blacks.clubHPlaceholders}
+              keyboardType={props.keyboardType}
+              onChangeText={props.onChangeText}
+              onSubmitEditing={props.onSubmitEditing}
+              editable={!props.load} // lock the input while a request is running
             />
-            </View>
-        )
-    }
+          </View>
 
-
-     const BigTextInput =(props:TextInputProps)=>{
-        return(
-            <View>
-                       <TextInput style={styles.bigInput}
-            placeholder={props.placeHolder}
-            placeholderTextColor={Colours.greys.one}
-            value={props.value}
-            // keyboardType={props.keyboardType}
-            onChangeText={props.onChangeText}
-            onSubmitEditing={props.onSubmitEditing} 
-            multiline={true}//so it is just this
-            numberOfLines={5}
-            autoCorrect={false}
-          
+          <View style={styles.viewThree}>
+            <CustomTouchableOpacity
+              disabled={props.disabled}
+              touchableText={props.touchableText}
+              onPress={props.onPress}
+              load={props.load}
             />
-            </View>
-        )
-    }
+          </View>
+        </View>
+      </KeyboardAvoidingView>
+    </View>
+  );
+};
 
+const styles = StyleSheet.create({
+  viewMain: {
+    height: '100%',
+    flexDirection: 'column',
+    backgroundColor: Colours.creeamish.fromCH,
+  },
 
-   const CustomTextInput = (props:TextInputProps) =>{
-        return(
-        <View style={styles.viewMain}>
+  viewOne: {
+    height: '30%',
+    justifyContent: 'center',
+    width: '100%',
+  },
 
-            <View style={styles.viewOne}>
-            <Text style={styles.label}>{props.label}</Text>
-            </View>
+  label: {
+    marginTop: 'auto',
+    marginBottom: 5,
+    fontSize: 24,
+    fontWeight: '500',
+    color: Colours.blacks.openLibrary,
+  },
 
-            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+  ViewTwoThree: {
+    height: '70%',
+    flexDirection: 'column',
+    width: '100%',
+  },
 
-            <View style={styles.ViewTwoThree}>
+  viewTwo: {
+    width: '100%',
+  },
 
-            <View style={styles.viewTwo} >
-                   <TextInput style={styles.input}
-            placeholder={props.placeHolder}
-            value={props.value}
-            placeholderTextColor={Colours.blacks.clubHPlaceholders}
-            keyboardType={props.keyboardType}
-            onChangeText={props.onChangeText}
-            onSubmitEditing={props.onSubmitEditing} 
-            />
-            </View>
+  input: {
+    fontSize: 13,
+    fontWeight: '400',
+    backgroundColor: Colours.thatIlike.darkish,
+    color: Colours.blacks.clubHPlaceholders,
+    borderRadius: 4,
+    borderWidth: 0.4,
+    borderBottomWidth: 0.4,
+    borderBottomColor: '#E0E0E0',
+    paddingTop: 20,
+    paddingVertical: 20,
+    paddingHorizontal: 25,
+    width: '100%',
+  },
 
+  inputAlone: {
+    fontSize: 13,
+    fontWeight: '400',
+    color: Colours.blacks.clubHPlaceholders,
+    backgroundColor: Colours.thatIlike.darkish,
+    borderWidth: 0.8,
+    borderRadius: 5,
+    borderColor: Colours.greys.one,
+    paddingTop: 7,
+    textAlign: 'center',
+    width: '100%',
+  },
 
-            <View style={styles.viewThree}>
-               <CustomTouchableOpacity 
-               disabled={props.disabled} 
-               touchableText={props.touchableText}
-               onPress={props.onPress}/>
-            </View>
+  bigInput: {
+    fontSize: 13,
+    fontWeight: '400',
+    backgroundColor: Colours.thatIlike.darkish,
+    color: Colours.blacks.clubHPlaceholders,
+    borderRadius: 10,
+    borderWidth: 0.6,
+    borderBottomWidth: 0.6,
+    borderColor: Colours.greys.one,
+    paddingTop: 10,
+    paddingHorizontal: 25,
+    textAlignVertical: 'top',
+    width: '100%',
+    minHeight: 135,
+  },
 
-            </View>
+  viewThree: {
+    width: '100%',
+    alignItems: 'center',
+    marginTop: 'auto',
+    marginBottom: 30,
+  },
 
-            </KeyboardAvoidingView>
-            </View>
-        )
-
-    }
-
-    const styles = StyleSheet.create({
-        viewMain:{
-        height:'100%',
-        flexDirection:'column',
-        backgroundColor:Colours.creeamish.fromCH,
-        },
-
-        viewOne:{
-            height:'30%',
-            justifyContent: 'center',
-            width: '100%',
-          
-            
-        },
-
-        label:{
-            marginTop:'auto',
-            marginBottom:5,
-            fontSize: 24,
-            fontWeight: '500',
-            color: Colours.blacks.openLibrary,
-        },
-
-        ViewTwoThree:{
-            height:'70%',
-            flexDirection: 'column',
-            width: '100%',  
-        },
-
-        viewTwo:{
-              width: '100%',
-        },
-
-  input:{
-           fontSize: 13,
-           fontWeight: '400',
-    backgroundColor:Colours.thatIlike.darkish,
-           color: Colours.blacks.clubHPlaceholders,
-           borderRadius:4,
-           borderWidth: 0.4,
-           borderBottomWidth:0.4,
-           borderBottomColor: '#E0E0E0',
-           paddingTop:20,
-           paddingVertical:20,
-           paddingHorizontal:25,
-           width: '100%',          
-        },
-
-          inputAlone:{
-                  fontSize: 13,
-           fontWeight: '400',
-           color: Colours.blacks.clubHPlaceholders,
-               backgroundColor:Colours.thatIlike.darkish,
-           borderWidth:0.8,
-           borderRadius:5,
-           borderColor:Colours.greys.one,
-           paddingTop:7,
-       
-             textAlign:'center', // Android: anchors text/placeholder to top
-           width: '100%',   
-            
-        },
-         bigInput:{
-           fontSize: 13,
-           fontWeight: '400',
-           backgroundColor:Colours.thatIlike.darkish,
-           color: Colours.blacks.clubHPlaceholders,
-           borderRadius:10,
-           borderWidth: 0.6,
-           borderBottomWidth:0.6,
-           borderColor:Colours.greys.one,
-           paddingTop:10,
-           paddingHorizontal:25,
-             textAlignVertical: 'top', // Android: anchors text/placeholder to top
-           width: '100%',   
-            minHeight: 135, // fixed dp instead of '30%'
-        },
-        
-        viewThree:{
-            width: '100%',
-               alignItems: 'center', 
-    marginTop: 'auto', 
-    marginBottom:30,
-        },
-  
-        btnText:{
-              fontSize: 14,
+  btnText: {
+    fontSize: 14,
     fontWeight: '600',
-    color: Colours.creeamish.fromCH, 
-        }
+    color: Colours.creeamish.fromCH,
+  },
+});
 
-    })
-    export {CustomTextInput,BigTextInput,TextInputAlone,ReturnError,FeedBackAlerter, CustomTouchableOpacity};
+export {
+  CustomTextInput,
+  BigTextInput,
+  TextInputAlone,
+  ReturnError,
+  FeedBackAlerter,
+  CustomTouchableOpacity,
+};

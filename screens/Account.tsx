@@ -1,5 +1,5 @@
-import { View, Text,Modal, StyleSheet, TextInputSubmitEditingEvent, Keyboard } from 'react-native';
-import { CustomTextInput, ReturnError, TextInputAlone } from '../looks/customComponents';
+import { View, Text, StyleSheet, TextInputSubmitEditingEvent, Keyboard } from 'react-native';
+import { CustomTextInput } from '../looks/customComponents';
 import { useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Colours } from '../looks/Colours';
@@ -9,154 +9,113 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { verifyPhoneExistsFn } from '../serverState/user';
 import { useQueryClient } from '@tanstack/react-query';
 
-
 export default function Account() {
   const [text, setText] = useState('');
   const [disable, setEnable] = useState<boolean>(true);
   const navigation = useNavigation<NativeStackNavigationProp<RouteParameterTypes>>();
-  const [loading,setLoading]=useState(false);
-  const [errorMessages, seterrorMessages]=useState('');
-  const [otpCode, setOtpCode] = useState("")
+  const [loading, setLoading] = useState(false);
+  const [errorMessages, seterrorMessages] = useState('');
   const queryClient = useQueryClient();
 
-  
 
-  const generateOTP = ()=>{
-      const answer=`${Math.floor(Math.random() * 10000)}`.padStart(4, "0");
-      setOtpCode(answer);
-      return answer;
-  }
-  const createonfourOfour = async(phoneN:string)=>{
-    let response:any;
-    try{
-      setLoading(true);
-     const codde= generateOTP();
-      response = await fetch(
-        'https://api.textbee.dev/api/v1/gateway/send-sms',{
-          method:'POST',
-          headers:{
-      'x-api-key': process.env.EXPO_PUBLIC_TEXTBEE_API_KEY,
-      'Content-Type': 'application/json',
-          },
-          body:JSON.stringify({
-            deviceId:'6abfc236cf8e7692e012a6e7',
-            recipients:[phoneN],
-            message:'verificaton code is:'+codde,
-          })
-        }
+  const generateOTP = () => `${Math.floor(Math.random() * 10000)}`.padStart(4, '0');
 
-      )
-    }
-    catch(e){
-      console.log(e);
-    }
-    finally{
-      setLoading(false);
-      console.log('Otp request process finished') 
+
+  const createonfourOfour = async (phoneN: string, codde: string) => {
+    const response = await fetch('https://api.textbee.dev/api/v1/gateway/send-sms', {
+      method: 'POST',
+      headers: {
+        'x-api-key': process.env.EXPO_PUBLIC_TEXTBEE_API_KEY as string,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        deviceId: '6abfc236cf8e7692e012a6e7',
+        recipients: [phoneN],
+        message: 'verification code is: ' + codde,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error('TextBee failed with status ' + response.status);
     }
     return response;
-  }
+  };
 
-   const onPressFnct = async () => {
+  const onPressFnct = async () => {
     setLoading(true);
-    try{
-    const user = await verifyPhoneExistsFn(text);
-    if (user?.status == 200) {
-  queryClient.setQueryData(['user'], user.data);
-}
-    else if(user?.status==404){
-      try{
-      const result = await createonfourOfour('254'+text);
-      console.log(result.data);
-      if(result.status==200){
-        navigation.navigate('OneTimePassword',{
-          message:'did not find an account',
-          phoneNumber:{text},
-          karua:{otpCode}
-        })
-      }
-      setEnable(true);
+    seterrorMessages('');
+    try {
+      const user = await verifyPhoneExistsFn(text);
 
+      if (user?.status == 200) {
+        queryClient.setQueryData(['user'], user.data);
+      } else if (user?.status == 404) {
+        const code = generateOTP();
+        try {
+          await createonfourOfour('254' + text, code);
+          navigation.navigate('OneTimePassword', {
+            message: 'did not find an account',
+            phoneNumber: text, 
+            karua: code, 
+          });
+        } catch (e) {
+          console.log('textbee failed', e);
+          seterrorMessages('could not send code');
+        }
+      } else if (user?.status == 500) {
+        console.log('server connection error!');
+        seterrorMessages('server connection error!');
       }
-      catch(e:any){
-        console.log('textbee failed'+e);
-      }
+      Keyboard.dismiss();
+    } catch (e: any) {
+      console.log(e);
+    } finally {
+      setLoading(false); 
     }
-     else if(user?.status==500){
-      console.log('server connection error!')
-      seterrorMessages('server connection error!')
-    }
-    Keyboard.dismiss();
-    // no navigation.navigate call here — RootNavigator swaps to
-    // BottomTabHolderIdentifier automatically once ['user'] is set,
-    // and BottomTabs opens on the "Listings" tab by default
-  }
-  catch(e:any){
-    console.log(e);
-  }
-  finally{
-    setLoading(false);
-  }
-
-  }
-
-
-
+  };
 
   const onSubmit = (e: TextInputSubmitEditingEvent) => {
     if (disable == false) {
-      const nowSnapshot = e.nativeEvent.text;
-      console.log(nowSnapshot);
+      console.log(e.nativeEvent.text);
     }
-  }
+  };
 
   const aMethod = (charInpt: string) => {
     setText(charInpt);
-    if (charInpt.length == 9) {
-      setEnable(false);
-    }
-    else if (charInpt == '') {
-      setEnable(true);
-    }
-    else if (charInpt == null) {
-      setEnable(true);
-    }
-    else setEnable(true);
-  }
-
- 
+    setEnable(charInpt.length != 9);
+  };
 
   return (
     <View style={styles.one}>
-                <View style={{
-                 elevation: 8,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.25,
-            }}>
-                <Ionicons name="alert" size={24} color={Colours.reds.one} />
-                <Text>{errorMessages}</Text>
-                </View>
-                
+      <View
+        style={{
+          elevation: 8,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 4 },
+          shadowOpacity: 0.25,
+        }}
+      >
+        <Ionicons name="alert" size={24} color={Colours.reds.one} />
+        <Text>{errorMessages}</Text>
+      </View>
+
       <View style={styles.two}>
         <CustomTextInput
           label={<Text>enter mobile number</Text>}
-          placeHolder='+254 *********'
+          placeHolder="+254 *********"
           value={text}
           onChangeText={aMethod}
           onSubmitEditing={onSubmit}
-          touchableText='continue'
+          touchableText="continue"
           keyboardType="phone-pad"
           disabled={disable}
           load={loading}
           onPress={onPressFnct}
         />
-        <View>
-        </View>
       </View>
     </View>
-  )
+  );
 }
+
 const styles = StyleSheet.create({
   one: {
     justifyContent: 'center',
@@ -164,5 +123,5 @@ const styles = StyleSheet.create({
   },
   two: {
     margin: 10,
-  }
-})
+  },
+});

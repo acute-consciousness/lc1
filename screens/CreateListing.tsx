@@ -212,7 +212,7 @@ else
   items={MaterialCategory}
   value={type}
   onValueChange={(val:any) => setType(val)}
-  placeholder="choose furniture"
+  placeholder="choose furniture type"
 />
                  </View>
 

@@ -110,7 +110,7 @@ const CustomDropdown = ({ items, value, onValueChange, placeholder }: CustomDrop
 
 const styles = StyleSheet.create({
   main: {
-    backgroundColor:Colours.creeamish.fromCH,
+    backgroundColor: Colours.thatIlike.darkish,
    borderRadius:4,
             borderWidth: 0.8,
            borderBottomWidth:0.6,
