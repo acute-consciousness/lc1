@@ -4,7 +4,7 @@ import { Colours } from '../looks/Colours';
 import { useQuery } from '@tanstack/react-query';
 import { TextInputAlone } from '../looks/customComponents';
 import { useState } from 'react';
-
+import Update_from_profile from '../serverState/updateUser';
 
 type User = {
   id: string;
@@ -15,8 +15,17 @@ type User = {
 };
 
 export default function Profile() {
-  const [email, setEmail]=useState('');
-    const [username, setUsername]=useState('');
+  const [email, setEmail]=useState<string>('');
+    const [username, setUsername]=useState<string>('');
+
+      const fnc_updateEmal= async()=>{
+      const  charr:string = email;
+        
+      }
+
+      const fnc_updateUserName=async()=>{
+        const charrTwo:string = username;
+      }
 
   const { data: user, isLoading, error } = useQuery<User>({
     queryKey: ['user'],
@@ -25,6 +34,12 @@ export default function Profile() {
     },
     enabled: false,
   });
+
+
+
+
+
+
 
   if (isLoading) {
     return (
@@ -72,6 +87,7 @@ export default function Profile() {
         </View>:<TextInputAlone
         value={email}
         placeHolder={'enter email'}
+        onChangeText={fnc_updateEmal}        
         />}
 
 
@@ -84,6 +100,7 @@ export default function Profile() {
         </View>:<TextInputAlone
         value={username}
         placeHolder={'who or what do they call you'}
+        onChangeText={fnc_updateUserName}
         />}
       </View>
       <View style={styles.viewTwo}>
@@ -105,7 +122,7 @@ const styles = StyleSheet.create({
             minHeight:'20%',            
         },
         already:{
-backgroundColor: Colours.thatIlike.darkish,
+backgroundColor: Colours.creeamish.fromCH,
     borderWidth: 0.8,
     borderRadius: 5,
     borderColor: Colours.greys.one,
@@ -113,7 +130,7 @@ backgroundColor: Colours.thatIlike.darkish,
      textAlign: 'center',
         },
         viewNmAndEm:{
-            fontSize: 13,
+            fontSize: 16,
              textAlign:'center',
     fontWeight: '400',
     color: Colours.blacks.clubHPlaceholders,
@@ -126,6 +143,7 @@ backgroundColor: Colours.thatIlike.darkish,
         label:{
             color:Colours.blacks.bitMOreTwo,
             textDecorationLine:'underline',
+            fontSize:16,
             fontWeight:'500'
         },
     viewTwo: {
@@ -136,11 +154,7 @@ backgroundColor: Colours.thatIlike.darkish,
             alignItems:'center',
     },
     viewLabel:{
-
   alignItems:'center',
-},
-label:{
-  fontSize:13,
-            color: Colours.blacks.bitMOreTwo,
+  marginBottom:5,
 },
 });

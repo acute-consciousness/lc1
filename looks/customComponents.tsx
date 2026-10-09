@@ -66,7 +66,6 @@ const FeedBackAlerter = (props: Alerters) => {
       }}
     >
       <View>
-        {/* icons should be in, icons should be conditional */}
         <Ionicons name="checkmark-outline" size={32} color={Colours.greens.openLibrary} />
         <Ionicons name="alert" size={24} color={Colours.reds.one} />
         <Text>{props.feedBackText}</Text>
@@ -82,19 +81,16 @@ const CustomTouchableOpacity = (props: TextInputProps) => {
   return (
     <TouchableOpacity
       onPress={props.onPress}
-      // blocked while disabled OR loading, so a second tap can't fire another request
       disabled={isDisabled || isLoading}
       style={{
-        // grey only when disabled and NOT loading, so the spinner shows on the normal dark button
-        backgroundColor: isDisabled && !isLoading ? Colours.greys.one : Colours.blacks.bitMOreTwo,
+       backgroundColor: isDisabled && !isLoading ? Colours.greys.one : Colours.blacks.bitMOreTwo,
         paddingVertical: 15,
         paddingHorizontal: 50,
-        borderRadius: 4,
+        borderRadius: 8,
         alignItems: 'center',
       }}
     >
       {isLoading ? (
-        // same colour as the button text, so it is visible on the dark button
         <ActivityIndicator size="small" color={Colours.creeamish.fromCH} />
       ) : (
         <Text style={styles.btnText}>{props.touchableText}</Text>
@@ -156,7 +152,7 @@ const CustomTextInput = (props: TextInputProps) => {
               keyboardType={props.keyboardType}
               onChangeText={props.onChangeText}
               onSubmitEditing={props.onSubmitEditing}
-              editable={!props.load} // lock the input while a request is running
+              editable={!props.load} 
             />
           </View>
 
@@ -206,13 +202,13 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    fontSize: 13,
+    fontSize: 16,
     fontWeight: '400',
-    backgroundColor: Colours.thatIlike.darkish,
+    backgroundColor: 'rgb(240,237,215)',
     color: Colours.blacks.clubHPlaceholders,
-    borderRadius: 4,
+    borderRadius: 8,
     borderWidth: 0.4,
-    borderBottomWidth: 0.4,
+    // borderBottomWidth: 0.4,
     borderBottomColor: '#E0E0E0',
     paddingTop: 20,
     paddingVertical: 20,
@@ -221,26 +217,23 @@ const styles = StyleSheet.create({
   },
 
   inputAlone: {
-    fontSize: 13,
+    fontSize: 16,
     fontWeight: '400',
     color: Colours.blacks.clubHPlaceholders,
     backgroundColor: Colours.thatIlike.darkish,
-    borderWidth: 0.8,
-    borderRadius: 5,
+    borderRadius: 8,
     borderColor: Colours.greys.one,
     paddingTop: 7,
-    textAlign: 'center',
+       paddingHorizontal: 25,
     width: '100%',
   },
 
   bigInput: {
-    fontSize: 13,
+    fontSize: 16,
     fontWeight: '400',
     backgroundColor: Colours.thatIlike.darkish,
     color: Colours.blacks.clubHPlaceholders,
     borderRadius: 10,
-    borderWidth: 0.6,
-    borderBottomWidth: 0.6,
     borderColor: Colours.greys.one,
     paddingTop: 10,
     paddingHorizontal: 25,

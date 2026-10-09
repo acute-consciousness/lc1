@@ -75,7 +75,7 @@ export default function OTP({ route }: any) {
           onChangeText={onChangeCode}
           onSubmitEditing={onSubmitCode}
         />
-        {error !== '' && <Text style={{fontSize:13, color: Colours.blacks.clubHPlaceholders, marginTop: 2 }}>{error}</Text>}
+        {error !== '' && <Text style={{fontSize:16, color: Colours.blacks.clubHPlaceholders, marginTop: 2 }}>{error}</Text>}
       </View>
 
       <View>

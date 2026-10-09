@@ -14,9 +14,7 @@ interface DropdownItem {
   value: string;
 }
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { ReactNode } from 'react';
-import AntDesign from '@expo/vector-icons/AntDesign';
 
  interface TextInputProps {
     label?:ReactNode;
@@ -54,9 +52,6 @@ interface CustomDropdownProps {
             style={styles.viewPickFile
              }>
                 <MaterialIcons 
-              /**   style={{
-                    marginRight:10
-                }} */
                 name="photo-size-select-actual" size={40} color={Colours.greys.one} />             
             </TouchableOpacity>
             </View>
@@ -72,15 +67,15 @@ const CustomDropdown = ({ items, value, onValueChange, placeholder }: CustomDrop
   return (
     <View>
       <TouchableOpacity style={styles.main} onPress={() => setOpen(true)}>
+
         <Text style={selectedItem ? styles.mainText : styles.placeholderText}>
           {selectedItem ? selectedItem.label : placeholder = placeholder}
         </Text>
+
         <Text>
-          <AntDesign name="caret-down" size={10} color="black"/>
-        </Text>
-        <Text>
-          
-        </Text>
+          <MaterialIcons name="navigate-next" size={32} color="black" /> 
+        </Text>  
+
       </TouchableOpacity>
 
       <Modal visible={open} transparent animationType="fade" onRequestClose={() => setOpen(false)}>
@@ -112,26 +107,29 @@ const styles = StyleSheet.create({
   main: {
     backgroundColor: Colours.thatIlike.darkish,
    borderRadius:4,
-            borderWidth: 0.8,
-           borderBottomWidth:0.6,
-           borderColor:Colours.greys.one,
     paddingTop:10,
+    paddingBottom:10,
            width: '100%',      
-           alignItems:'center',
+          flexDirection: 'row',
+    justifyContent: 'space-between',
         
   },
   mainText: { 
-    flexDirection:'column',
      fontSize: 13,
            fontWeight: '400',
-    color: Colours.blacks.openLibrary,
+    color: Colours.greys.one,
+    marginRight:15,
+    marginLeft:15,
 
   
     },
   placeholderText: {
     flexDirection:'row',
-    fontSize: 13,
+    fontSize: 16,
            fontWeight: '400',
+           color:Colours.greys.one,
+      marginRight:15,
+         paddingHorizontal: 25,
    
     },
   backdrop: {
@@ -142,8 +140,8 @@ const styles = StyleSheet.create({
   },
   sheet: {
            backgroundColor:Colours.thatIlike.darkish,
-    borderTopLeftRadius: 16,
-    borderTopRightRadius: 16,
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
     maxHeight: '60%',
     paddingVertical: 1,
     
@@ -152,13 +150,13 @@ const styles = StyleSheet.create({
     alignItems:'center',
     paddingVertical: 14,
     paddingHorizontal: 16,
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.4,
     borderBottomColor: Colours.border.materialCategory,
     
   },
   optionText: {
-    fontSize: 13,
-           fontWeight: '400',
+    fontSize: 14,
+           fontWeight: '500',
            color: Colours.blacks.clubHPlaceholders,
 
   },

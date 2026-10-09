@@ -4,7 +4,7 @@ import { MaterialCategory } from "../screens/CreateListing"
 
 export const postListing = async( id:number|undefined,photo:string,title:string,description:string,price:string,type:string|null,condition:string|null) => { 
     // now what?
-const response = await axios.post(`http://10.127.77.100:8080/items/createListing`,{
+const response = await axios.post(`http://192.168.2.11:8080/items/createListing`,{
     //
     id:id,
     photo: photo.toString(),

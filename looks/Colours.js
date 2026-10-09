@@ -1,18 +1,9 @@
-// i did this last time but i didn't save it
-// well, i'm tired and heartbroken, bro i'm one of those guys ile rally ya youth the preacher
-// said that there, that there are guys who get heartbroken when, when, when they weren't even
-// dating with the other. I'm that guy, and she (the Rev) has something against my kind.
-// well, Jeremiah, mmmh, but i agree, there is something wrong with my kind or should i say with me
-// it's, it's, it is not right, nor is it normal. Hope in Jeremiah is that he attained
-/*okay let me get the colour codes form, from pinterest
-    and then how do, i export a component, and then how do i export a, export a component
-*/
-export const Colours = {//why did we have the  = {}, i don't think that, that there is even an eeplanation, and anyway...
+export const Colours = {
    forBanners:{
        valleyOrange:'#E84615',
     },   
-    thatIlike:{ //they are just the creamish ones 
-        darkish: 'rgb(240,237,215)',
+    thatIlike:{
+        darkish: 'rgb(251, 248, 240)',
         lighter: 'rgb(250,249,238)',
     },
     reds:{
@@ -20,7 +11,7 @@ export const Colours = {//why did we have the  = {}, i don't think that, that th
     },
     creeamish : {
         one:'rgb(233, 218, 197)',
-        fromCH:'#FAF9EE',//is called vanilla
+        fromCH:'rgb(255, 255, 255)',
         openLibrary:"#DFDEC2",
         wayCreamish:'rgb(251, 255, 200)',
         another:'#E9E5DE',

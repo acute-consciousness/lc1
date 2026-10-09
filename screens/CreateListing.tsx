@@ -148,25 +148,19 @@ else
         <View style={styles.viewMain}>
                      
                   <View style={styles.viewInputOne}>
-                    <View style={{
-                      justifyContent:'center',
-                      alignItems:'center'
-                    }}>
-                    <TextInput style={styles.textInput}
-                    placeholderTextColor={Colours.greys.one}
-                       placeholder='paste image URL '
-                    value={photoURL}
+                    <TextInputAlone
+                    placeHolder='paste image url'
+                      value={photoURL}
                     onChangeText={(val)=>setphotoURL(val)} 
-                    />            
-                    </View>
+                    />
+            
                  </View>
 
+
+
                   <View style={styles.viewInputOne}>
-                       <View style={styles.viewLabel}>
-              <Text style={styles.label}>posting title</Text>
-              </View>
                     <TextInputAlone
-                    placeHolder='e.g. clothing rank, stool, used sofa '
+                    placeHolder='item title e.g. side stand...'
                     value={title}
                       limit={14} 
                     onChangeText={(vall)=>setTitle(vall)}
@@ -176,11 +170,8 @@ else
 
 
                     <View style={styles.viewInputOne}>
-              <View style={styles.viewLabel}>
-              <Text style={styles.label}>additional description</Text>
-              </View>
                <BigTextInput
-                placeHolder={'such size of the item or any issues the potential new user should know of'}
+                placeHolder={'more information \ne.g.size of the item or any issues the potential new user should know of'}
                 value={bigDescription}
                 onChangeText={(val)=>setBigDescription(val)}
               
@@ -190,9 +181,6 @@ else
 <KeyboardAvoidingView>
 
                     <View style={styles.viewInputOne}>
-                       <View style={styles.viewLabel}>
-              <Text style={styles.label}>price</Text>
-              </View>
                     <TextInputAlone
                     placeHolder='type free or the price '
                     value={price}
@@ -230,12 +218,13 @@ else
 <View style={styles.ViewTwoThree}>
 
                  <TouchableOpacity onPress={DoEVerything} style={{
+                  marginTop:20,
     backgroundColor:Colours.blacks.bitMOreTwo,
            paddingVertical: 15,
     paddingHorizontal: 50,  
     borderRadius:8,
     alignItems:'center',
-    width:'70%'
+    width:'100%'
 
    }}>
                  {postLoading
@@ -279,7 +268,7 @@ const styles=StyleSheet.create({
            borderColor:Colours.greys.one,
            paddingTop:7,
        
-             textAlign:'center', // Android: anchors text/placeholder to top
+             textAlign:'center', 
            width: '100%',
 
     },
@@ -299,20 +288,8 @@ viewMain:{
       marginRight:8,
       
 }, 
-textInput:{
-     fontSize: 13,
-      fontWeight: '400',
-       backgroundColor:Colours.creeamish.fromCH,
-           color: Colours.blacks.clubHPlaceholders,
-           borderBottomWidth:0.8,
-           borderColor:Colours.greys.one,
-           paddingTop:8,
-           paddingHorizontal:25,
-             textAlign:'center',
-           width: '80%',   
-},
 viewInputOne:{
-marginTop:10,
+marginTop:15,
 },
 viewLabel:{
 
